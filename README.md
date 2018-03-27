@@ -22,7 +22,7 @@ There are two main types of cutscenes.
 The ones rendered in **real time** that use the gameplay graphics to create scripted events and **pre-rendered** video "cinematic".
 <p align="center"> 
 <img src="https://j.gifs.com/Q0q4G7.gif" width="400">
- <img src="https://i.ytimg.com/vi/FfQ2GCgCFQ8/maxresdefault.jpg" width="400">
+<img src="https://i.ytimg.com/vi/FfQ2GCgCFQ8/maxresdefault.jpg" width="400">
 </p>
 
 Although, there are some more types like:
@@ -47,6 +47,6 @@ The problem with pre-rendered graphics is that they cannot change according to t
 So, we will focus on the creation of a real time cutscene manager.
 
 # Bibliography
-https://en.wikipedia.org/wiki/Cutscene
+[https://en.wikipedia.org/wiki/Cutscene](https://en.wikipedia.org/wiki/Cutscene)
 ## Interesting links:
 [Cutscene as an information system](https://link.springer.com/chapter/10.1007/978-3-319-07626-3_62)
