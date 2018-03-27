@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<game_state>
+	<input />
+	<window />
+	<textures />
+	<audio>
+		<musicVolumeModifier value="0.300000012" />
+		<sfxVolumeModifier value="1" />
+	</audio>
+	<map />
+	<fonts />
+	<gui>
+		<score value="200" />
+		<coins value="4" />
+	</gui>
+	<scene>
+		<currentMap num="0" />
+		<time value="20" />
+		<uipos>
+			<uiclock x="0" y="0" />
+			<lifebar x="94" y="5" />
+			<timer x="800" y="100" />
+			<coins x="800" y="0" />
+			<score x="800" y="50" />
+		</uipos>
+	</scene>
+	<sceneswitch />
+	<mapchange />
+	<entitycontroller>
+		<player>
+			<position x="6151" y="632" />
+			<speed x="0" y="0" />
+			<collider width="32" height="63" x="6162" y="641" />
+			<grounded value="true" />
+			<dashing value="false" />
+			<currentDashtime value="0" />
+		</player>
+		<flyingfurrball>
+			<position x="1236" y="1563" />
+		</flyingfurrball>
+		<flyingfurrball>
+			<position x="1868" y="1766" />
+		</flyingfurrball>
+		<flyingfurrball>
+			<position x="2228" y="1228" />
+		</flyingfurrball>
+		<flyingfurrball>
+			<position x="4482" y="1051" />
+		</flyingfurrball>
+		<flyingfurrball>
+			<position x="3363" y="963" />
+		</flyingfurrball>
+		<flyingfurrball>
+			<position x="4803" y="607" />
+		</flyingfurrball>
+		<landmaid>
+			<position x="1727" y="1695" />
+		</landmaid>
+		<landmaid>
+			<position x="3568" y="1919" />
+		</landmaid>
+	</entitycontroller>
+	<pathfinding />
+	<renderer>
+		<camera x="5810" y="248" />
+	</renderer>
+</game_state>

@@ -1,0 +1,103 @@
+<!-- Config file for the game -->
+
+<config>
+  <app framerate_cap="30">
+    <title>Game Development Testbed</title>
+    <organization>UPC</organization>
+  </app>
+	
+  <renderer>
+    <vsync value="true"/>
+  </renderer>
+
+  <window>
+    <resolution width="1024" height="768" scale="1"/>
+    <fullscreen value="false"/>
+    <borderless value="false"/>
+    <resizable value="false"/>
+    <fullscreen_window value="false"/>
+  </window>
+
+  <file_system>
+    <path>data.zip</path>
+  </file_system>
+
+  <audio>
+    <music> 
+      <folder>audio/music/</folder>
+      <musicVolumeModifier value="0.3" />
+    </music>
+   <sfx> 
+      <folder>audio/fx/</folder>
+      <sfxVolumeModifier value="1" />
+    </sfx>
+  </audio>
+  
+  <map>
+    <folder>maps/</folder>
+  </map>
+
+  <entitycontroller>
+    <folder>textures/</folder>
+    <sprite_sheet source="Entities.png"/>
+    <totaltimestop value="3"/>
+    <totaltimeslow value="2"/>
+    <timestop_cooldown value ="10"/>
+    <player>
+      <jumpFX source="Jump.wav"/>
+      <deathFX source="Death.wav"/>
+      <landFX source="Land.wav"/>
+      <dashFX source="Dash.wav"/>
+      <pickupFX source="Pickup.wav"/>
+      <timestopFX source="TimeStop.wav"/>
+      <accel x="1" y="1"/>
+
+      <gravity value="50"/>
+      <jumpForce x="0" y="-26"/>
+
+      <maxSpeed x="360" y="30"/>
+      <dashingSpeed x="600" y="0"/>
+      <dashingColliderDifference value="0"/>
+      <colOffset x="11" y="9"/>
+      <dashtime value="500"/>
+    </player>
+    
+    <flyingfurrball>
+      <gravity value="0"/>
+      <maxSpeed x="150" y="150"/>
+      <colOffset x="5" y ="5"/>
+      <Collider h="31" w="31"/>
+      <sightOffset x="250" y="300"/>
+      <SightCollider w="1000" h="631"/>
+    </flyingfurrball>
+
+    <landmaid>
+      <gravity value="100"/>
+      <maxSpeed x="150" y="200"/>
+      <colOffset x="7" y ="5"/>
+      <Collider h="60" w="34"/>
+      <sightOffset x="200" y="200"/>
+      <SightCollider w="800" h="434"/>
+    </landmaid>
+
+    <pickup>
+      <collider h="18" w="18"/>
+      <points value="100"/>
+    </pickup>
+    
+  </entitycontroller>
+
+  <gui>
+    <buttonFX source="Buttonsfx.wav"/>
+    <atlas file="gui/definitive atlas.png"/>
+    <background file="gui/login_background.png"/>
+  </gui>
+
+
+  <scene>
+    <map_name name="MaidInAbyss.tmx"></map_name>
+    <map_name name="DepthsOfTheAbyss.tmx"></map_name>
+    <fade_time value="1"/>
+  </scene>
+
+</config>
