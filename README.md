@@ -51,6 +51,6 @@ The problem with pre-rendered graphics is that they cannot change according to t
 So, we will focus on the creation of a real time cutscene manager.
 
 # Bibliography
-Links
+https://en.wikipedia.org/wiki/Cutscene
 ## Interesting links:
 [Cutscene as an information system](https://link.springer.com/chapter/10.1007/978-3-319-07626-3_62)
