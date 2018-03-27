@@ -19,31 +19,27 @@ TODOs to both use and code the system
 They are usually used to show conversation between characters, set the mood and introduce new gameplay features or incoming events.
 There are two main types of cutscenes.
 
-- The ones rendered in **real time** that use the gameplay graphics to create scripted events.
+The ones rendered in **real time** that use the gameplay graphics to create scripted events and **pre-rendered** video "cinematic".
 <p align="center"> 
-<img src="https://j.gifs.com/Q0q4G7.gif" width="600">
-</p>
-
-- **Pre-rendered** video "cinematic".
-<p align="center"> 
-<img src="https://i.ytimg.com/vi/FfQ2GCgCFQ8/maxresdefault.jpg" width="600">
+<img src="https://j.gifs.com/Q0q4G7.gif" width="400">
+ <img src="https://i.ytimg.com/vi/FfQ2GCgCFQ8/maxresdefault.jpg" width="400">
 </p>
 
 Although, there are some more types like:
 
-- **"Live-action cutscenes"**, which are recorded like a film.
-<p align="center"> 
-<img src="https://i.ytimg.com/vi/dnC87rzStIo/maxresdefault.jpg" width="600">
+  - **Live-action cutscenes**, which are recorded like a film.
+<p> 
+<img src="https://i.ytimg.com/vi/dnC87rzStIo/maxresdefault.jpg" width="400">
 </p>
 
-- **"Mixed media cutscenes"**, which, as the name says mixes real time and pre-rendered graphics.
-<p align="center"> 
-<img src="https://j.gifs.com/wm8W6m.gif" width="600">
+  - **Mixed media cutscenes**, which, as the name says mixes real time and pre-rendered graphics.
+<p> 
+<img src="https://j.gifs.com/wm8W6m.gif" width="400">
 </p>
 
-- **"Interactive cutscenes"** also known as quick time events.
-<p align="center"> 
-<img src="https://i.kinja-img.com/gawker-media/image/upload/s--UjIyKaTi--/c_fill,f_auto,fl_progressive,g_center,h_675,q_80,w_1200/18grs10k0sa5pjpg.jpg" width="600">
+  - **Interactive cutscenes** also known as quick time events.
+<p> 
+<img src="https://i.kinja-img.com/gawker-media/image/upload/s--UjIyKaTi--/c_fill,f_auto,fl_progressive,g_center,h_675,q_80,w_1200/18grs10k0sa5pjpg.jpg" width="400">
 </p>
 
 # Pre-rendered vs Real-time
