@@ -46,6 +46,21 @@ Although, there are some more types like:
 The problem with pre-rendered graphics is that they cannot change according to the game state. However, real time cutscenes are specially thought for that, so the components of the scene will change in order to visualize the game state and the action that the player has done, so he feels more relevant to the game and more immersed. For example, if he has chosen to equip his character with a blue cape instead of a red one, it will be seen in the cutscene.
 So, we will focus on the creation of a real time cutscene manager.
 
+# Existing cutscene editors
+
+# Let's code
+### Which is our objective
+(How our manager will work)
+(data driven from xml)
+### What we need and what we have
+(Explain the base code)
+### Coding main functionalities
+(Start reading the xml, explain the syntax used and code at least one function to show how it is suposed to be done)
+### Code yourself
+(Some tasks so they understand and internalize the manager and the code)
+#### TODO 1
+#### TODO N
+
 # Bibliography
 [https://en.wikipedia.org/wiki/Cutscene](https://en.wikipedia.org/wiki/Cutscene)
 ## Interesting links:
