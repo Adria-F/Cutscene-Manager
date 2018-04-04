@@ -3,8 +3,6 @@
 This content is generated for the second year’s subject Project 2, under supervision of lecturer
 [Ricard Pillosu](https://es.linkedin.com/in/ricardpillosu).”
 
-Wide intro into the pros/cons of different cutscene systems
-
 Explanation on the current existing cutscene editors
 
 Data driven code with generic approach
@@ -64,6 +62,23 @@ As higher is the degree of freedom of the game, the higher the chances that some
 Is for that reason, that the cutscene manager is a really important tool and needs to be well designed and give as much control over every single element as possible.
 
 # Existing cutscene editors
+Now we are going to look at some existing engines and their approach for creating cutscenes.
+
+### Unity
+Since Unity version 2017.2 it includes a native cutscene editor called "Timeline" it is a sequencer of multitracks that allows to create gameplay sequences controling game objects, it is prepared to work with a plugin called "cinemachine" which is a procedural camera system that grants absolute control over camera movements, transitions between several ones and effects.
+
+Also, there are some paying plugins created by community developers that can do the same or even more.
+For example [Cinema Director](https://assetstore.unity.com/packages/tools/visual-scripting/cinema-director-timeline-cutscene-editor-19779) which through the same use of a timeline, allows to control game objects, camera position and switches, sound effects and transitions in an easy and intuitive way.
+### Unreal Engine
+https://wiki.unrealengine.com/Matinee_Basics:_Creating_Your_First_Matinee_Sequence
+https://forums.unrealengine.com/development-discussion/animation/32515-first-person-cut-scene-in-ue4
+https://docs.unrealengine.com/en-us/Engine/Matinee
+
+### Cryengine
+http://docs.cryengine.com/display/SDKDOC2/Creating+a+Basic+Cinematic+Scene
+
+## The common use of a timeline
+All of them have something in common, they use a timeline to create the cutscenes, with simple functions of activating/deactivating elements and moving them, which in a composition with many of them, create the effect of a final complex and smooth cutscene.
 
 # Let's code
 ### Which is our objective
