@@ -65,7 +65,7 @@ Is for that reason, that the cutscene manager is a really important tool and nee
 Now we are going to look at two existing engines and their different approach for creating cutscenes.
 
 ### Unity
-Since Unity version 2017.2 it includes a native cutscene editor called "Timeline" it is a sequencer of multitracks that allows to create gameplay sequences controling game objects, it is prepared to work with a free plugin called "cinemachine" which is a procedural camera system that grants absolute control over camera movements, transitions between several ones and effects.
+Since Unity version 2017.2 it includes a native cutscene editor called "Timeline" it is a sequencer of multitracks that allows to create gameplay sequences controling game objects, it is prepared to work with a free plugin called [Cinemachine](https://assetstore.unity.com/packages/essentials/cinemachine-79898) which is a procedural camera system that grants absolute control over camera movements, transitions between several ones and effects.
 
 Also, there are some paying plugins created by community developers that can do the same or even more.
 For example [Cinema Director](https://assetstore.unity.com/packages/tools/visual-scripting/cinema-director-timeline-cutscene-editor-19779) which through the same use of a timeline, allows to control game objects, camera position and switches, sound effects and transitions in an easy and intuitive way.
@@ -114,5 +114,7 @@ Then you can access a game object, specially used with cameras and enter the ani
 [https://docs.unity3d.com/Manual/TimelineOverview.html](https://docs.unity3d.com/Manual/TimelineOverview.html)
 
 [https://docs.unrealengine.com/en-us/Engine/Matinee](https://docs.unrealengine.com/en-us/Engine/Matinee)
+
+[https://unity3d.com/es/learn/tutorials/topics/animation/cinemachine-clear-shot-camera-tutorial](https://unity3d.com/es/learn/tutorials/topics/animation/cinemachine-clear-shot-camera-tutorial)
 ## Interesting links:
 [Cutscene as an information system](https://link.springer.com/chapter/10.1007/978-3-319-07626-3_62)
