@@ -3,12 +3,6 @@
 This content is generated for the second year’s subject Project 2, under supervision of lecturer
 [Ricard Pillosu](https://es.linkedin.com/in/ricardpillosu).”
 
-Explanation on the current existing cutscene editors
-
-Data driven code with generic approach
-
-TODOs to both use and code the system
-
 # Cutscenes
 <p align="center">
 “A cutscene is a sequence in a video game that is not interactive, breaking up the gameplay.”
