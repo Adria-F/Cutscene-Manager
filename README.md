@@ -62,23 +62,32 @@ As higher is the degree of freedom of the game, the higher the chances that some
 Is for that reason, that the cutscene manager is a really important tool and needs to be well designed and give as much control over every single element as possible.
 
 # Existing cutscene editors
-Now we are going to look at some existing engines and their approach for creating cutscenes.
+Now we are going to look at two existing engines and their different approach for creating cutscenes.
 
 ### Unity
-Since Unity version 2017.2 it includes a native cutscene editor called "Timeline" it is a sequencer of multitracks that allows to create gameplay sequences controling game objects, it is prepared to work with a plugin called "cinemachine" which is a procedural camera system that grants absolute control over camera movements, transitions between several ones and effects.
+Since Unity version 2017.2 it includes a native cutscene editor called "Timeline" it is a sequencer of multitracks that allows to create gameplay sequences controling game objects, it is prepared to work with a free plugin called "cinemachine" which is a procedural camera system that grants absolute control over camera movements, transitions between several ones and effects.
 
 Also, there are some paying plugins created by community developers that can do the same or even more.
 For example [Cinema Director](https://assetstore.unity.com/packages/tools/visual-scripting/cinema-director-timeline-cutscene-editor-19779) which through the same use of a timeline, allows to control game objects, camera position and switches, sound effects and transitions in an easy and intuitive way.
 ### Unreal Engine
-https://wiki.unrealengine.com/Matinee_Basics:_Creating_Your_First_Matinee_Sequence
-https://forums.unrealengine.com/development-discussion/animation/32515-first-person-cut-scene-in-ue4
-https://docs.unrealengine.com/en-us/Engine/Matinee
-
-### Cryengine
-http://docs.cryengine.com/display/SDKDOC2/Creating+a+Basic+Cinematic+Scene
+In Unreal engine, there is a tool called Matinee, it works pretty similar to the Unity one. There is a timeline where you can crate multiple tracks, each related to a game asset. There, you can add keyframes with a different state in each and the engine will create a smooth transition between them and a cinematic effect.
 
 ## The common use of a timeline
-All of them have something in common, they use a timeline to create the cutscenes, with simple functions of activating/deactivating elements and moving them, which in a composition with many of them, create the effect of a final complex and smooth cutscene.
+Both of them have something in common, they use a timeline to create the cutscenes; however, they use it differently.
+Unity uses "blocks" with some function related, they have a start time and a duration. They can also be overlapped between them in order to create a smooth fadding transition when changing.
+As in this example image. We can see in blue, the animations that will be executing for the attacker 1, in orange, each sound effect or music and in green, whether a game object will be active or not. It is like any simple video editor.
+<p align="center"> 
+<img src="https://forum.unity.com/attachments/timelineexample-dark-png.218796/" width="800">
+</p>
+
+Then you can access a game object, specially used with cameras and enter the animation function, which allows you to create an animation by saving keyframes of the state of the object and then use it in the timeline. This function is basically what is used in Unreal engine, where you do not create blocks of functions/events but save keyframes of the different changes that happen during the scene to create a "big animation".
+<p align="center"> 
+<img src="https://i.imgur.com/wTcMqjL.png" width="800">
+</p>
+<p align="center"> 
+  <em> Each red arrow is a keyframe </em>
+</p>
+
 
 # Let's code
 ### Which is our objective
@@ -95,5 +104,15 @@ All of them have something in common, they use a timeline to create the cutscene
 
 # Bibliography
 [https://en.wikipedia.org/wiki/Cutscene](https://en.wikipedia.org/wiki/Cutscene)
+
+[https://wiki.unrealengine.com/Matinee_Basics:Creating_Your_First_Matinee_Sequence](https://wiki.unrealengine.com/Matinee_Basics:_Creating_Your_First_Matinee_Sequence)
+
+[https://unity3d.com/es/learn/tutorials/topics/animation/using-timeline-overview?playlist=17099](https://unity3d.com/es/learn/tutorials/topics/animation/using-timeline-overview?playlist=17099)
+
+[https://docs.unity3d.com/Manual/TimelineSection.html](https://docs.unity3d.com/Manual/TimelineSection.html)
+
+[https://docs.unity3d.com/Manual/TimelineOverview.html](https://docs.unity3d.com/Manual/TimelineOverview.html)
+
+[https://docs.unrealengine.com/en-us/Engine/Matinee](https://docs.unrealengine.com/en-us/Engine/Matinee)
 ## Interesting links:
 [Cutscene as an information system](https://link.springer.com/chapter/10.1007/978-3-319-07626-3_62)
