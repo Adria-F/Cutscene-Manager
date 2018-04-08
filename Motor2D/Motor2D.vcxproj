@@ -77,85 +77,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Ally.cpp" />
-    <ClCompile Include="Building.cpp" />
-    <ClCompile Include="Command.cpp" />
-    <ClCompile Include="Effects.cpp" />
-    <ClCompile Include="Enemy.cpp" />
-    <ClCompile Include="Entity.cpp" />
-    <ClCompile Include="Hero.cpp" />
-    <ClCompile Include="Image.cpp" />
-    <ClCompile Include="InheritedImage.cpp" />
-    <ClCompile Include="InheritedInteractive.cpp" />
-    <ClCompile Include="InheritedLabel.cpp" />
-    <ClCompile Include="InputBox.cpp" />
-    <ClCompile Include="Interactive.cpp" />
-    <ClCompile Include="InteractiveImage.cpp" />
-    <ClCompile Include="InteractiveLabel.cpp" />
-    <ClCompile Include="InteractiveLabelledImage.cpp" />
     <ClCompile Include="j1Fonts.cpp" />
-    <ClCompile Include="j1Gui.cpp" />
-    <ClCompile Include="j1IntroScene.cpp" />
     <ClCompile Include="j1Main.cpp" />
     <ClCompile Include="j1App.cpp" />
     <ClCompile Include="j1Audio.cpp" />
     <ClCompile Include="j1Input.cpp" />
-    <ClCompile Include="j1Map.cpp" />
-    <ClCompile Include="j1Pathfinding.cpp" />
     <ClCompile Include="j1PerfTimer.cpp" />
     <ClCompile Include="j1Scene.cpp" />
-    <ClCompile Include="j1SceneSwitch.cpp" />
     <ClCompile Include="j1Timer.cpp" />
-    <ClCompile Include="Label.cpp" />
-    <ClCompile Include="LabelledImage.cpp" />
-    <ClCompile Include="LifeBar.cpp" />
-    <ClCompile Include="Nature.cpp" />
     <ClCompile Include="p2Animation.cpp" />
     <ClCompile Include="p2Log.cpp" />
     <ClCompile Include="j1Render.cpp" />
     <ClCompile Include="j1Textures.cpp" />
     <ClCompile Include="j1Window.cpp" />
     <ClCompile Include="PugiXml\src\pugixml.cpp" />
-    <ClCompile Include="j1EntityController.cpp" />
-    <ClCompile Include="Scrollbar.cpp" />
-    <ClCompile Include="Skills.cpp" />
-    <ClCompile Include="Squad.cpp" />
-    <ClCompile Include="UIElement.cpp" />
-    <ClCompile Include="Unit.cpp" />
-    <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Ally.h" />
-    <ClInclude Include="Building.h" />
     <ClInclude Include="Color.h" />
-    <ClInclude Include="Command.h" />
-    <ClInclude Include="Effects.h" />
-    <ClInclude Include="Enemy.h" />
-    <ClInclude Include="Entity.h" />
-    <ClInclude Include="Hero.h" />
-    <ClInclude Include="Image.h" />
-    <ClInclude Include="InheritedImage.h" />
-    <ClInclude Include="InheritedInteractive.h" />
-    <ClInclude Include="InheritedLabel.h" />
-    <ClInclude Include="InputBox.h" />
-    <ClInclude Include="Interactive.h" />
-    <ClInclude Include="InteractiveImage.h" />
-    <ClInclude Include="InteractiveLabel.h" />
-    <ClInclude Include="InteractiveLabelledImage.h" />
     <ClInclude Include="j1Fonts.h" />
-    <ClInclude Include="j1Gui.h" />
-    <ClInclude Include="j1IntroScene.h" />
-    <ClInclude Include="j1EntityController.h" />
-    <ClInclude Include="j1Map.h" />
-    <ClInclude Include="j1Pathfinding.h" />
     <ClInclude Include="j1PerfTimer.h" />
     <ClInclude Include="j1Scene.h" />
-    <ClInclude Include="j1SceneSwitch.h" />
     <ClInclude Include="j1Timer.h" />
-    <ClInclude Include="Label.h" />
-    <ClInclude Include="LabelledImage.h" />
-    <ClInclude Include="LifeBar.h" />
-    <ClInclude Include="Nature.h" />
     <ClInclude Include="p2Animation.h" />
     <ClInclude Include="j1Audio.h" />
     <ClInclude Include="j1Input.h" />
@@ -169,22 +111,9 @@
     <ClInclude Include="j1Window.h" />
     <ClInclude Include="PugiXml\src\pugiconfig.hpp" />
     <ClInclude Include="PugiXml\src\pugixml.hpp" />
-    <ClInclude Include="Scrollbar.h" />
-    <ClInclude Include="Skills.h" />
-    <ClInclude Include="Squad.h" />
-    <ClInclude Include="UIElement.h" />
-    <ClInclude Include="Unit.h" />
-    <ClInclude Include="Window.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\Game\maps\map1.tmx" />
-    <None Include="..\Game\save_file.tmx" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="..\Game\config.xml">
-      <SubType>Designer</SubType>
-    </Xml>
-    <Xml Include="..\Game\Gui_config.xml">
       <SubType>Designer</SubType>
     </Xml>
   </ItemGroup>

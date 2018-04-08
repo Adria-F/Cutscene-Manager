@@ -11,15 +11,10 @@
 #include "j1Render.h"
 #include "j1Textures.h"
 #include "j1Audio.h"
-#include "j1IntroScene.h"
 #include "j1Scene.h"
-#include "j1SceneSwitch.h"
-#include "j1Map.h"
 #include "j1App.h"
-#include "j1EntityController.h"
-#include "j1Pathfinding.h"
 #include "j1Fonts.h"
-#include "j1Gui.h"
+//#include "j1Gui.h"
 
 // Constructor
 j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
@@ -31,14 +26,9 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	render				= new j1Render();
 	tex					= new j1Textures();
 	audio				= new j1Audio();
-	introscene			= new j1IntroScene();
 	scene				= new j1Scene();
-	sceneswitch			= new j1SceneSwitch();
-	map					= new j1Map();
-	entitycontroller	= new j1EntityController();
-	pathfinding			= new j1PathFinding();
 	font				= new j1Fonts();
-	gui					= new j1Gui();
+	//gui					= new j1Gui();
 	
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
@@ -46,14 +36,9 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(win);
 	AddModule(tex);
 	AddModule(audio);
-	AddModule(map);
 	AddModule(font);
-	AddModule(gui);
-	AddModule(introscene, false);
+	//AddModule(gui);
 	AddModule(scene);
-	AddModule(sceneswitch);
-	AddModule(entitycontroller);
-	AddModule(pathfinding);
 
 	// render last to swap buffer
 	AddModule(render);
@@ -190,7 +175,7 @@ void j1App::FinishUpdate()
 	uint32 frames_on_last_update = prev_last_sec_frame_count;
 
 	static char title[256];
-	sprintf_s(title, 256, "Alliance The last Bastion: FPS: %i Avg.FPS: %.2f last frame ms: %02u", frames_on_last_update, avg_fps, last_frame_ms);
+	sprintf_s(title, 256, "Cutscene Manager | FPS: %i Avg.FPS: %.2f last frame ms: %02u", frames_on_last_update, avg_fps, last_frame_ms);
 	App->win->SetTitle(title);
 
 	if (framerate && last_frame_ms < framerate && fpsCapON) SDL_Delay(framerate - last_frame_ms);

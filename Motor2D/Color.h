@@ -2,15 +2,15 @@
 
 struct Color
 {
-	float r, g, b, a;
+	int r, g, b, a;
 
-	Color() : r(0.0f), g(0.0f), b(0.0f), a(1.0f)
+	Color() : r(0), g(0), b(0), a(255)
 	{}
 
-	Color(float r, float g, float b, float a = 1.0f) : r(r), g(g), b(b), a(a)
+	Color(float r, float g, float b, float a = 255) : r(r), g(g), b(b), a(a)
 	{}
 
-	void Set(float r, float g, float b, float a = 1.0f)
+	void Set(float r, float g, float b, float a = 255)
 	{
 		this->r = r;
 		this->g = g;
@@ -26,10 +26,10 @@ struct Color
 };
  
 
-static Color Red = Color(1.0f, 0.0f, 0.0f);
-static Color Green = Color(0.0f, 1.0f, 0.0f);
-static Color Blue = Color(0.0f, 0.0f, 1.0f);
-static Color Black = Color(0.0f, 0.0f, 0.0f);
-static Color White = Color(1.0f, 1.0f, 1.0f);
-static Color Grey = Color(0.7f, 0.7f, 0.7f);
-static Color Yellow = Color(1.0f, 1.0f, 0.4f);
+static Color Red = Color(255, 0, 0);
+static Color Green = Color(0, 255, 0);
+static Color Blue = Color(0, 0, 255);
+static Color Black = Color(0, 0, 0);
+static Color White = Color(255, 255, 255);
+static Color Grey = Color(177, 177, 177);
+static Color Yellow = Color(255, 255, 102);

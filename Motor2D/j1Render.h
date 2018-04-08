@@ -37,27 +37,19 @@ public:
 	void SetViewPort(const SDL_Rect& rect);
 	void ResetViewPort();
 	bool Blit(SDL_Texture* texture, int x, int y, const SDL_Rect* section = NULL,SDL_RendererFlip flip = SDL_FLIP_NONE, float speed = 1.0f, double angle = 0, int pivot_x = INT_MAX, int pivot_y = INT_MAX) const;
-	bool DrawQuad(const SDL_Rect& rect, Color& color, bool filled = true, bool use_camera = true) const;
+	bool DrawQuad(SDL_Rect rect, Color& color, bool filled = true, bool use_camera = true) const;
 	bool DrawLine(int x1, int y1, int x2, int y2, Color& color, bool use_camera = true) const;
 	bool DrawCircle(int x1, int y1, int redius, Color& color, bool use_camera = true) const;
 
 	// Set background color
 	void SetBackgroundColor(SDL_Color color);
 
-	//Move camera with cursor
-	void MouseCameraMovement(float dt);
-	bool CullingCam(fPoint point);
-
 public:
 
-	SDL_Renderer*	renderer;
-	SDL_Rect		camera;
-	SDL_Rect		culling_camera;
-	SDL_Rect		viewport;
-	SDL_Color		background;
-
-	int cam_limit_x = 0;
-	int cam_limit_y = 0;
+	SDL_Renderer*	renderer = nullptr;
+	SDL_Rect		camera = { 0,0,0,0 };
+	SDL_Rect		viewport = { 0,0,0,0 };
+	SDL_Color		background = { 0,0,0,0 };
 };
 
 #endif // __j1RENDER_H__

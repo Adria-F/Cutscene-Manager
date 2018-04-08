@@ -39,8 +39,8 @@ public:
 	bool Save(pugi::xml_node& data) const;
 
 public:
-	Window* sceneMenu = nullptr;
-	SDL_Texture* debug_tex;
+
+	SDL_Texture* background = nullptr;
 };
 
 #endif // __j1SCENE_H__

@@ -37,10 +37,6 @@ bool j1Render::Awake(pugi::xml_node& config)
 		camera.w = App->win->screen_surface->w;
 		camera.h = App->win->screen_surface->h;
 		camera.x = camera.y = 0;
-
-		culling_camera.w = App->win->screen_surface->w + 100;
-		culling_camera.h = App->win->screen_surface->h + 100;
-		culling_camera.x = camera.y = -100;
 	}
 	else
 	{
@@ -167,22 +163,21 @@ bool j1Render::Blit(SDL_Texture* texture, int x, int y, const SDL_Rect* section,
 	return true;
 }
 
-bool j1Render::DrawQuad(const SDL_Rect& rect, Color& color, bool filled, bool use_camera) const
+bool j1Render::DrawQuad(SDL_Rect rect, Color& color, bool filled, bool use_camera) const
 {
 	uint scale = App->win->GetScale();
 
 	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
 	SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
 
-	SDL_Rect rec(rect);
 	if(use_camera)
 	{
-		rec.x = (int)(-camera.x + rect.x * scale);
-		rec.y = (int)(-camera.y + rect.y * scale);
-		rec.w *= scale, rec.h *= scale;
+		rect.x = (int)(-camera.x + rect.x * scale);
+		rect.y = (int)(-camera.y + rect.y * scale);
+		rect.w *= scale, rect.h *= scale;
 	}
 
-	if((filled) ? SDL_RenderFillRect(renderer, &rec) : SDL_RenderDrawRect(renderer, &rec))
+	if((filled) ? SDL_RenderFillRect(renderer, &rect) : SDL_RenderDrawRect(renderer, &rect))
 	{
 		LOG("Cannot draw quad to screen. SDL_RenderFillRect error: %s", SDL_GetError());
 		return false;
@@ -238,36 +233,4 @@ bool j1Render::DrawCircle(int x, int y, int radius, Color& color, bool use_camer
 	}
 
 	return true;
-}
-
-
-void j1Render::MouseCameraMovement(float dt)
-{
-	int mousePosX, mousePosY, mov_x, mov_y;
-	mousePosX = mousePosY = mov_x = mov_y = 0;
-
-	App->input->GetMousePosition(mousePosX, mousePosY);
-
-	if (mousePosX < 10 && camera.x < 0)								mov_x = 1000;  //Move left
-	else if (mousePosX > camera.w - 10 && camera.x > -cam_limit_x)	 mov_x = -1000; //Move right
-		
-	if (mousePosY < 10 && camera.y < 0)								 mov_y = 1000;	 //Move up 
-	else if (mousePosY > camera.h - 10 && camera.y > -cam_limit_y)	 mov_y = -1000; //Move down
-		
-	camera.x += mov_x * dt;
-	camera.y += mov_y * dt;
-
-	//clamp values to 0 and limit
-	camera.x = (camera.x < -cam_limit_x ? -cam_limit_x : (camera.x > 0 ? 0 : camera.x));
-	camera.y = (camera.y < -cam_limit_y ? -cam_limit_y : (camera.y > 0 ? 0 : camera.y));
-
-	culling_camera.x = -camera.x - 100;
-	culling_camera.y = -camera.y - 100;
-
-}
-
-bool j1Render::CullingCam(fPoint point) 
-{
-	SDL_Point p = { point.x, point.y };
-	return SDL_PointInRect(&p, &culling_camera);
 }
