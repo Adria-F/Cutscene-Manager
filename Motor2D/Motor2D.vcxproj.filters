@@ -52,6 +52,9 @@
     <ClCompile Include="UI_Element.cpp">
       <Filter>Desenvolupament  ========\UI_elements</Filter>
     </ClCompile>
+    <ClCompile Include="j1CutsceneManager.cpp">
+      <Filter>Desenvolupament  ========\Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="j1Window.h">
@@ -120,6 +123,9 @@
     <ClInclude Include="UI_Element.h">
       <Filter>Desenvolupament  ========\UI_elements</Filter>
     </ClInclude>
+    <ClInclude Include="j1CutsceneManager.h">
+      <Filter>Desenvolupament  ========\Modules</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Programacio 2 ===========">
@@ -152,6 +158,9 @@
   </ItemGroup>
   <ItemGroup>
     <Xml Include="..\Game\config.xml">
+      <Filter>Desenvolupament  ========\Files</Filter>
+    </Xml>
+    <Xml Include="..\Game\cutscenes.xml">
       <Filter>Desenvolupament  ========\Files</Filter>
     </Xml>
   </ItemGroup>

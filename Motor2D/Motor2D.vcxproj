@@ -77,6 +77,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="j1CutsceneManager.cpp" />
     <ClCompile Include="j1EntityManager.cpp" />
     <ClCompile Include="j1Fonts.cpp" />
     <ClCompile Include="j1Gui.cpp" />
@@ -98,6 +99,7 @@
   <ItemGroup>
     <ClInclude Include="Color.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="j1CutsceneManager.h" />
     <ClInclude Include="j1EntityManager.h" />
     <ClInclude Include="j1Fonts.h" />
     <ClInclude Include="j1Gui.h" />
@@ -123,6 +125,7 @@
     <Xml Include="..\Game\config.xml">
       <SubType>Designer</SubType>
     </Xml>
+    <Xml Include="..\Game\cutscenes.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -20,6 +20,7 @@ class j1Scene;
 class j1Fonts;
 class j1Gui;
 class j1EntityManager;
+class j1CutsceneManager;
 
 class j1App
 {
@@ -92,6 +93,7 @@ public:
 	j1Fonts*			font;
 	j1Gui*				gui;
 	j1EntityManager*	entitymanager;
+	j1CutsceneManager*	cutscenemanager;
 	bool fpsCapON = true;
 	std::string			load_game;
 

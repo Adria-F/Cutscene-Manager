@@ -16,6 +16,7 @@
 #include "j1Fonts.h"
 #include "j1Gui.h"
 #include "j1EntityManager.h"
+#include "j1CutsceneManager.h"
 
 // Constructor
 j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
@@ -31,6 +32,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	font				= new j1Fonts();
 	entitymanager		= new j1EntityManager();
 	gui					= new j1Gui();
+	cutscenemanager		= new j1CutsceneManager();
 	
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
@@ -42,6 +44,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(scene);
 	AddModule(entitymanager);
 	AddModule(gui);
+	AddModule(cutscenemanager);
 
 	// render last to swap buffer
 	AddModule(render);

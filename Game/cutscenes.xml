@@ -1,0 +1,12 @@
+<!-- 
+Structure:
+
+steps execute in order
+they will start at time = 0
+if there is a delay step, the following steps will start at time = 0 + delay time
+
+-->
+
+<cutscenes>
+  
+</cutscenes>
