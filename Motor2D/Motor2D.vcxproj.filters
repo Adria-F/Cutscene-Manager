@@ -43,6 +43,9 @@
     <ClCompile Include="p2Animation.cpp">
       <Filter>Desenvolupament  ========\Tools</Filter>
     </ClCompile>
+    <ClCompile Include="j1EntityManager.cpp">
+      <Filter>Desenvolupament  ========\Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="j1Window.h">
@@ -99,6 +102,12 @@
     <ClInclude Include="p2Animation.h">
       <Filter>Desenvolupament  ========\Tools</Filter>
     </ClInclude>
+    <ClInclude Include="j1EntityManager.h">
+      <Filter>Desenvolupament  ========\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Desenvolupament  ========\Entities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Programacio 2 ===========">
@@ -121,6 +130,9 @@
     </Filter>
     <Filter Include="Desenvolupament  ========\Files">
       <UniqueIdentifier>{ddaf4ad4-59f7-4824-92c2-0f1d99104b38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Desenvolupament  ========\Entities">
+      <UniqueIdentifier>{c8e21136-c60d-42b9-aa08-270adc6c855e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

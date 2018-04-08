@@ -15,6 +15,7 @@
 #include "j1App.h"
 #include "j1Fonts.h"
 //#include "j1Gui.h"
+#include "j1EntityManager.h"
 
 // Constructor
 j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
@@ -28,6 +29,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	audio				= new j1Audio();
 	scene				= new j1Scene();
 	font				= new j1Fonts();
+	entitymanager		= new j1EntityManager();
 	//gui					= new j1Gui();
 	
 	// Ordered for awake / Start / Update
@@ -37,8 +39,9 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(tex);
 	AddModule(audio);
 	AddModule(font);
-	//AddModule(gui);
 	AddModule(scene);
+	AddModule(entitymanager);
+	//AddModule(gui);
 
 	// render last to swap buffer
 	AddModule(render);

@@ -7,6 +7,7 @@
 #include "j1Render.h"
 #include "j1Window.h"
 #include "j1Scene.h"
+#include "j1EntityManager.h"
 
 j1Scene::j1Scene() : j1Module() { name = "scene"; }
 
@@ -25,6 +26,8 @@ bool j1Scene::Awake(pugi::xml_node& config)
 bool j1Scene::Start()
 {
 	background = App->tex->Load("maps/background.png");
+	App->entitymanager->createAlly(100, 100);
+	App->entitymanager->createEnemy(300, 300);
 
 	return true;
 }

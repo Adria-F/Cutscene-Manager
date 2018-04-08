@@ -19,6 +19,7 @@ class j1Audio;
 class j1Scene;
 class j1Fonts;
 class j1Gui;
+class j1EntityManager;
 
 class j1App
 {
@@ -59,8 +60,6 @@ public:
 
 private:
 
-	
-
 	// Call modules before each loop iteration
 	void PrepareUpdate();
 
@@ -92,6 +91,7 @@ public:
 	j1Scene*			scene;
 	j1Fonts*			font;
 	j1Gui*				gui;
+	j1EntityManager*	entitymanager;
 	bool fpsCapON = true;
 	std::string			load_game;
 
