@@ -46,6 +46,12 @@
     <ClCompile Include="j1EntityManager.cpp">
       <Filter>Desenvolupament  ========\Modules</Filter>
     </ClCompile>
+    <ClCompile Include="j1Gui.cpp">
+      <Filter>Desenvolupament  ========\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_Element.cpp">
+      <Filter>Desenvolupament  ========\UI_elements</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="j1Window.h">
@@ -108,6 +114,12 @@
     <ClInclude Include="Entity.h">
       <Filter>Desenvolupament  ========\Entities</Filter>
     </ClInclude>
+    <ClInclude Include="j1Gui.h">
+      <Filter>Desenvolupament  ========\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_Element.h">
+      <Filter>Desenvolupament  ========\UI_elements</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Programacio 2 ===========">
@@ -133,6 +145,9 @@
     </Filter>
     <Filter Include="Desenvolupament  ========\Entities">
       <UniqueIdentifier>{c8e21136-c60d-42b9-aa08-270adc6c855e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Desenvolupament  ========\UI_elements">
+      <UniqueIdentifier>{83496dbf-2d02-443e-998b-5863bb549010}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

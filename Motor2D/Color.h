@@ -31,5 +31,5 @@ static Color Green = Color(0, 255, 0);
 static Color Blue = Color(0, 0, 255);
 static Color Black = Color(0, 0, 0);
 static Color White = Color(255, 255, 255);
-static Color Grey = Color(177, 177, 177);
+static Color Gray = Color(200, 200, 200);
 static Color Yellow = Color(255, 255, 102);
