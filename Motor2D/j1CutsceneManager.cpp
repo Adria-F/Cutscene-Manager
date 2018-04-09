@@ -26,15 +26,26 @@ bool j1CutsceneManager::Update(float dt)
 {
 	if (activeCutscene != nullptr)
 	{
-		/*
-		NEEDS dt USAGE
-
-		execute activeSteps if one returns false, remove it from the missingSteps list
-		if the step that returns false is a WAIT type, loadFollowingSteps()
-
-		if the missingSteps list is empty, the cutscene is finished
-		*/
-		//doStuff
+		
+		//if the activeSteps & missingSteps list is empty, the cutscene is finished
+		if (activeCutscene->missingSteps.size() == 0 && activeCutscene->activeSteps.size() == 0)
+			activeCutscene = nullptr;
+		else
+		{
+			/*execute activeSteps if one returns false, remove it from the activeSteps list
+			if the step that returns false is a WAIT type, loadFollowingSteps()*/
+			for (std::list<Step*>::iterator it_s = activeCutscene->activeSteps.begin(); it_s != activeCutscene->activeSteps.end(); it_s++)
+			{
+				if (!(*it_s)->executeStep(dt))//Enter if it returns false
+				{
+					activeCutscene->activeSteps.erase(it_s);
+					if ((*it_s)->type == WAIT)
+					{
+						activeCutscene->loadFollowingSteps();
+					}
+				}
+			}
+		}
 	}
 
 	return true;
@@ -53,8 +64,8 @@ void j1CutsceneManager::startCutscene(std::string tag)
 		cutscene = loadCutscene(tag);
 	}
 
-	//load all steps into missingSteps list
-	//loadFollowingSteps()
+	cutscene->missingSteps = cutscene->steps;
+	cutscene->loadFollowingSteps();
 	activeCutscene = cutscene;
 }
 
@@ -75,9 +86,16 @@ Cutscene* j1CutsceneManager::isCutsceneLoaded(std::string tag)
 
 Cutscene* j1CutsceneManager::loadCutscene(std::string tag)
 {
+	Cutscene* ret = nullptr;
 	//Open config file and load selected cutscene
 
 	//TODO load and push steps into the cutscene
 	//add cutscene into list
-	//set cutscene to active
+	return ret;
+}
+
+void Cutscene::loadFollowingSteps()
+{
+	// move steps from missingSteps to activeSteps (delte them from missingSteps)
+	//until finds the next WAIT type
 }

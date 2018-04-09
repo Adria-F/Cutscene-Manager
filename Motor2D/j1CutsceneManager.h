@@ -23,21 +23,16 @@ enum step_type
 	WAIT
 };
 
-struct Step
+class Step
 {
-	stepOf element;
-	step_type type;
-	//UI_Element*
-	//Entity*
-	//music/fx path?
-	float duration;
-	j1PerfTimer timer;
+public:
 
-	bool executeStep()//return false when finished
+	bool executeStep(float dt)//return false when finished
 	{
 		//Call the desired function with the using element
 
 		//If WAIT, just wait for the timer to reach duration and return false
+		return true;
 	}
 
 	/*
@@ -53,19 +48,32 @@ struct Step
 	void Activate(bool activate, FX/MUSIC path?);
 
 	*/
+public:
+
+	stepOf element;
+	step_type type;
+	//UI_Element*
+	//Entity*
+	//music/fx path?
+	float duration;
+	j1PerfTimer timer;
 };
 
-struct Cutscene
+class Cutscene
 {
-	std::list<Step*> steps;
-	std::list<const Step*> missingSteps;
-	std::list<const Step*> activeSteps;
-	std::string tag;
+public:
 
-	//CleanUp for the list steps
-
-	void loadFollowingSteps() //It loads the following steps until the next WAIT type
+	void CleanUp()//for the list steps
 	{}
+
+	void loadFollowingSteps(); //It loads the following steps until the next WAIT type
+
+public:
+
+	std::list<Step*> steps;
+	std::list<Step*> missingSteps;
+	std::list<Step*> activeSteps;
+	std::string tag;
 };
 
 class j1CutsceneManager : public j1Module
