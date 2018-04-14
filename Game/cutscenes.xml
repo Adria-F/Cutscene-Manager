@@ -18,5 +18,8 @@ if there is a delay step, the following steps will start at time = 0 + delay tim
 		<move duration="1000" x="300">
 			<entity type="ALLY" ID="1"/>
 		</move>
+		<move duration="2000" y="300">
+			<entity type="ENEMY" ID="1"/>
+		</move>
 	</cutscene>
 </cutscenes>
