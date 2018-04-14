@@ -9,6 +9,7 @@
 #include <string>
 #include "PugiXml\src\pugixml.hpp"
 #include "p2Defs.h"
+#include "p2Log.h"
 
 class UIElement;
 

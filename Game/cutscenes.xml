@@ -5,8 +5,18 @@ steps execute in order
 they will start at time = 0
 if there is a delay step, the following steps will start at time = 0 + delay time
 
+  <move_to/>
+  <move/>
+  <activate/>
+  <deactivate/>
+  <wait/>
+
 -->
 
 <cutscenes>
-  
+	<cutscene tag="test">
+		<move duration="1000" x="300">
+			<entity type="ALLY" ID="1"/>
+		</move>
+	</cutscene>
 </cutscenes>

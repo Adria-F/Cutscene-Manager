@@ -6,7 +6,7 @@
 
 #define DEFAULT_ENTITY_SPEED 150
 
-class Entity;
+#include "Entity.h"
 
 class j1EntityManager : public j1Module
 {
@@ -27,6 +27,8 @@ public:
 
 	Entity* createAlly(int x, int y);
 	Entity* createEnemy(int x, int y);
+
+	Entity* getEntity(entity_type type, int id);
 
 public:
 

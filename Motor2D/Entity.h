@@ -2,6 +2,8 @@
 #define __ENTITY_H__
 
 #include "p2Point.h"
+#include "j1Render.h"
+#include "j1App.h"
 
 enum entity_type
 {

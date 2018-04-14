@@ -8,6 +8,7 @@
 #include "j1Window.h"
 #include "j1Scene.h"
 #include "j1EntityManager.h"
+#include "j1CutsceneManager.h"
 
 j1Scene::j1Scene() : j1Module() { name = "scene"; }
 
@@ -38,6 +39,9 @@ bool j1Scene::Update(float dt)
 	BROFILER_CATEGORY("Scene update", Profiler::Color::Black);
 
 	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN) return false;
+
+	if (App->input->GetKey(SDL_SCANCODE_P) == KEY_DOWN)
+		App->cutscenemanager->startCutscene("test");
 
 	App->render->Blit(background, 0, 0);
 
