@@ -148,3 +148,8 @@ void j1Input::GetMouseMotion(int& x, int& y)
 	x = mouse_motion_x;
 	y = mouse_motion_y;
 }
+
+bool j1Input::collidingMouse(SDL_Rect rect)
+{
+	return mouse_x > rect.x && mouse_x < (rect.x+rect.w) && mouse_y > rect.y && mouse_y < (rect.y+rect.h);
+}

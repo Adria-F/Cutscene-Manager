@@ -30,13 +30,15 @@ public:
 			break;
 		}
 
-		App->render->DrawQuad({ position.x, position.y, 20, 30 }, usingColor);
+		App->render->DrawQuad({ position.x, position.y, section.w, section.h }, usingColor);
 	}
 
 public:
 
 	iPoint position = { 0,0 };
 	entity_type type = ALLY;
+	uint id = 0;
+	SDL_Rect section = { 0,0,20,30 };
 };
 
 #endif // __ENTITY_H__

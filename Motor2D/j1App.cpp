@@ -192,14 +192,13 @@ void j1App::FinishUpdate()
 bool j1App::PreUpdate()
 {
 	BROFILER_CATEGORY("PreUpdate", Profiler::Color::Blue);
-	LOG("Preupdate:");
 
 	for (std::list<j1Module*>::iterator it = modules.begin(); it != modules.end(); it++)
 	{
 		if ((*it)->active)
 		{
-			if ((*it)->PreUpdate())  LOG("name: %s", (*it)->name.c_str());
-			else return false;
+			if (!(*it)->PreUpdate())
+				return false;
 		}
 	}
 
@@ -210,14 +209,13 @@ bool j1App::PreUpdate()
 bool j1App::DoUpdate()
 {
 	BROFILER_CATEGORY("DoUpdate", Profiler::Color::LightBlue);
-	LOG("Update:");
 
 	for (std::list<j1Module*>::iterator it = modules.begin(); it != modules.end(); it++)
 	{
 		if ((*it)->active)
 		{
-			if ((*it)->Update(DeltaTime))  LOG("name: %s", (*it)->name.c_str());
-			else return false;
+			if (!(*it)->Update(DeltaTime))
+				return false;
 		}
 	}
 
@@ -228,14 +226,13 @@ bool j1App::DoUpdate()
 bool j1App::PostUpdate()
 {
 	BROFILER_CATEGORY("PostUpdate", Profiler::Color::Magenta);
-	LOG("PostUpdate:");
 
 	for (std::list<j1Module*>::iterator it = modules.begin(); it != modules.end(); it++)
 	{
 		if ((*it)->active)
 		{
-			if ((*it)->PostUpdate())  LOG("name: %s", (*it)->name.c_str());
-			else return false;
+			if (!(*it)->PostUpdate())
+				return false;
 		}
 	}
 

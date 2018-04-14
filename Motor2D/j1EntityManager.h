@@ -4,6 +4,8 @@
 #include "j1Module.h"
 #include <list>
 
+#define DEFAULT_ENTITY_SPEED 150
+
 class Entity;
 
 class j1EntityManager : public j1Module
@@ -11,7 +13,8 @@ class j1EntityManager : public j1Module
 public:
 	j1EntityManager()
 	{}
-	~j1EntityManager();
+	~j1EntityManager()
+	{}
 
 	// Called before the first frame
 	bool Start();
@@ -27,7 +30,9 @@ public:
 
 public:
 
-	std::list<Entity*> entities;
+	std::list<Entity*> allies;
+	std::list<Entity*> enemies;
+	Entity* selected_entity = nullptr;
 };
 
 #endif / __J1ENTITYMANAGER_H__
