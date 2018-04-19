@@ -11,6 +11,7 @@ class Entity;
 
 enum stepOf
 {
+	WAIT_TYPE,
 	ENTITY,
 	UI_ELEMENT,
 	MUSIC,
@@ -30,21 +31,19 @@ class Step
 {
 public:
 
-	Step(step_type type, Entity* entity, int duration): type(type), element(ENTITY), entity(entity), duration(duration)
+	Step(step_type type, stepOf element, int id, int duration): type(type), element(element), id(id), duration(duration)
 	{}
 	~Step()
 	{}
 
-	bool executeStep(float dt);
+	void Start() { timer.Start(); }
 
-	void setPosition(int x, int y)
-	{
-		position = { x,y };
-	}
+	bool isFinished() const;
+
+	void setMovement(int x, int y);
 	
 
 	//void Move(UI_element* element);
-	void Move(Entity* entity, float dt);
 	/*
 	void MoveTo(UI_element* element);
 	void MoveTo(Entity* entity);
@@ -57,10 +56,12 @@ public:
 
 	stepOf element;
 	step_type type;
-	//UI_Element*
-	Entity* entity = nullptr;
-	//music/fx path?
-	iPoint position = { 0,0 };
+	int id = 0;
+	fPoint movement = { 0.0f,0.0f };
+	
+
+private:
+
 	int duration = 0;
 	j1Timer timer;
 };
@@ -74,14 +75,20 @@ public:
 	~Cutscene()//clean all lists of steps
 	{}
 
+	void Start();
+
 	void loadFollowingSteps(); //It loads the following steps until the next WAIT type
+	bool isFinished() const;
 
 public:
 
-	std::list<Step*> steps;
-	std::list<Step*> missingSteps;
 	std::list<Step*> activeSteps;
 	std::string tag;
+	std::list<Step*> steps;
+
+private:
+
+	std::list<Step*> missingSteps;
 };
 
 class j1CutsceneManager : public j1Module

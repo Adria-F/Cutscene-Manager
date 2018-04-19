@@ -14,7 +14,7 @@ enum entity_type
 class Entity
 {
 public:
-	Entity(int x, int y, entity_type type): position({x,y}), type(type)
+	Entity(float x, float y, entity_type type): position({x,y}), type(type)
 	{}
 	~Entity()
 	{}
@@ -32,12 +32,12 @@ public:
 			break;
 		}
 
-		App->render->DrawQuad({ position.x, position.y, section.w, section.h }, usingColor);
+		App->render->DrawQuad({ (int)position.x, (int)position.y, section.w, section.h }, usingColor);
 	}
 
 public:
 
-	iPoint position = { 0,0 };
+	fPoint position = { 0.0f,0.0f };
 	entity_type type = ALLY;
 	uint id = 0;
 	SDL_Rect section = { 0,0,20,30 };

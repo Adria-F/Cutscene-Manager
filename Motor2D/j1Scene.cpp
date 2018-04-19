@@ -28,7 +28,8 @@ bool j1Scene::Start()
 {
 	background = App->tex->Load("maps/background.png");
 	App->entitymanager->createAlly(100, 100);
-	App->entitymanager->createEnemy(300, 300);
+	App->entitymanager->createEnemy(100, 200);
+	App->entitymanager->createAlly(100, 300);
 
 	return true;
 }
@@ -40,8 +41,12 @@ bool j1Scene::Update(float dt)
 
 	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN) return false;
 
-	if (App->input->GetKey(SDL_SCANCODE_P) == KEY_DOWN)
+	if (App->input->GetKey(SDL_SCANCODE_C) == KEY_DOWN)
 		App->cutscenemanager->startCutscene("test");
+	if (App->input->GetKey(SDL_SCANCODE_P) == KEY_DOWN)
+		App->cutscenemanager->startCutscene("test2");
+	if (App->input->GetKey(SDL_SCANCODE_O) == KEY_DOWN)
+		App->cutscenemanager->startCutscene("test3");
 
 	App->render->Blit(background, 0, 0);
 

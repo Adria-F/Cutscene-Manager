@@ -28,12 +28,11 @@ public:
 	Entity* createAlly(int x, int y);
 	Entity* createEnemy(int x, int y);
 
-	Entity* getEntity(entity_type type, int id);
+	Entity* getEntity(int id);
 
 public:
 
-	std::list<Entity*> allies;
-	std::list<Entity*> enemies;
+	std::list<Entity*> entities;
 	Entity* selected_entity = nullptr;
 };
 

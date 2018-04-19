@@ -281,6 +281,21 @@ void j1App::SaveGame() const
 	want_to_save = true;
 }
 
+void j1App::pauseGame()
+{
+	game_paused = true;
+}
+
+void j1App::resumeGame()
+{
+	game_paused = false;
+}
+
+bool j1App::isGamePaused() const
+{
+	return game_paused;
+}
+
 
 bool j1App::LoadGameNow()
 {

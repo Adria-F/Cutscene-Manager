@@ -16,10 +16,47 @@ if there is a delay step, the following steps will start at time = 0 + delay tim
 <cutscenes>
 	<cutscene tag="test">
 		<move duration="1000" x="300">
-			<entity type="ALLY" ID="1"/>
+			<entity ID="1"/>
 		</move>
-		<move duration="2000" y="300">
-			<entity type="ENEMY" ID="1"/>
+		<wait duration="1000"/>
+		<move duration="2000" x="300">
+			<entity ID="2"/>
+		</move>
+		<wait duration="2000"/>
+		<move duration="5000" x="300">
+			<entity ID="3"/>
+		</move>
+		<wait duration="5000"/>
+		<move duration="1000" x="-300">
+			<entity ID="1"/>
+		</move>
+		<move duration="2000" x="-300">
+			<entity ID="2"/>
+		</move>
+		<move duration="5000" x="-300">
+			<entity ID="3"/>
+		</move>
+	</cutscene>
+	<cutscene tag="test2">
+		<move duration="1000" x="300">
+			<entity ID="1"/>
+		</move>
+		<move duration="2000" x="300">
+			<entity ID="2"/>
+		</move>
+		<move duration="5000" x="300">
+			<entity ID="3"/>
+		</move>
+	</cutscene>
+	<cutscene tag="test3">
+		<move duration="1000" x="-300">
+			<entity ID="1"/>
+		</move>
+		<move duration="2000" x="-300">
+			<entity ID="2"/>
+		</move>
+		<move duration="5000" x="-300">
+			<entity ID="3"/>
 		</move>
 	</cutscene>
 </cutscenes>

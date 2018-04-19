@@ -19,18 +19,19 @@ bool j1CutsceneManager::Start()
 bool j1CutsceneManager::Update(float dt)
 {
 	if (activeCutscene != nullptr)
-	{
-		
-		//if the activeSteps & missingSteps list is empty, the cutscene is finished
-		if (activeCutscene->missingSteps.size() == 0 && activeCutscene->activeSteps.size() == 0)
+	{	
+		if (activeCutscene->isFinished())
+		{
 			activeCutscene = nullptr;
+			App->resumeGame();
+		}
 		else
 		{
 			/*execute activeSteps if one returns false, remove it from the activeSteps list
 			if the step that returns false is a WAIT type, loadFollowingSteps()*/
 			for (std::list<Step*>::iterator it_s = activeCutscene->activeSteps.begin(); it_s != activeCutscene->activeSteps.end(); it_s++)
 			{
-				if (!(*it_s)->executeStep(dt))//Enter if it returns false
+				if ((*it_s)->isFinished())//Enter if finished
 				{
 					activeCutscene->activeSteps.erase(it_s);
 					if ((*it_s)->type == WAIT)
@@ -65,10 +66,12 @@ void j1CutsceneManager::startCutscene(std::string tag)
 	{
 		cutscene = loadCutscene(tag); //Load it from XML
 	}
-
-	cutscene->missingSteps = cutscene->steps; //All the steps of the cutscene are missing
-	cutscene->loadFollowingSteps(); //Load the first set of steps
-	activeCutscene = cutscene; //Set it as the current active cutscene
+	if (cutscene != nullptr)
+	{
+		cutscene->Start(); //Start the selected cutscene
+		activeCutscene = cutscene; //Set it as the current active cutscene
+		App->pauseGame(); //MISSING if this cutscene pause the game
+	}
 }
 
 Cutscene* j1CutsceneManager::isCutsceneLoaded(std::string tag)
@@ -128,34 +131,24 @@ Cutscene* j1CutsceneManager::loadCutscene(std::string tag)
 
 				int duration = step.attribute("duration").as_int();
 
-				pugi::xml_node isEntity = step.child("entity");
-				if (isEntity)
-				{
-					Entity* entity = nullptr;
-					entity_type entityType;
-					std::string type_name = isEntity.attribute("type").as_string();
-					if (type_name == "ALLY")
-						entityType = ALLY;
-					else if (type_name == "ENEMY")
-						entityType = ENEMY;
-					else
-					{
-						LOG("Unknown entity type");
-						break;
-					}
+				int id = step.first_child().attribute("ID").as_int();
+				std::string element_name = step.first_child().name();
+				stepOf element_type = WAIT_TYPE;
+				if (element_name == "entity")
+					element_type = ENTITY;
+				else if (element_name == "UI_element")
+					element_type = UI_ELEMENT;
+				else if (element_name == "FX")
+					element_type == FX;
+				else if (element_name == "MUSIC")
+					element_type == MUSIC;
+				else
+					LOG("Unknown element type");
 
-					entity = App->entitymanager->getEntity(entityType, isEntity.attribute("ID").as_int());
-					if (entity == nullptr)
-					{
-						LOG("Entity not found");
-						break;
-					}
-					newStep = new Step(type, entity, duration);
-					if (type == MOVE || type == MOVE_TO)
-						newStep->setPosition(step.attribute("x").as_int(0), step.attribute("y").as_int(0));
-				}
-				//if (isUIElement)
-				//if (isAudio)
+				newStep = new Step(type, element_type, id, duration);
+
+				if (type == MOVE || type == MOVE_TO)
+					newStep->setMovement(step.attribute("x").as_int(0), step.attribute("y").as_int(0));
 
 				ret->steps.push_back(newStep);
 
@@ -173,6 +166,14 @@ Cutscene* j1CutsceneManager::loadCutscene(std::string tag)
 	return ret;
 }
 
+void Cutscene::Start()
+{
+	missingSteps.clear();
+	activeSteps.clear();
+	missingSteps = steps; //All the steps of the cutscene are missing
+	loadFollowingSteps(); //Load the first set of steps
+}
+
 void Cutscene::loadFollowingSteps()
 {
 	// move steps from missingSteps to activeSteps (delte them from missingSteps)
@@ -180,38 +181,27 @@ void Cutscene::loadFollowingSteps()
 	for (std::list<Step*>::iterator it_s = missingSteps.begin(); it_s != missingSteps.end(); it_s++)
 	{
 		activeSteps.push_back((*it_s));
-		(*it_s)->timer.Start(); //Start the timer from 0
+		missingSteps.erase(it_s);
+		(*it_s)->Start(); //Start the timer from 0
 		if ((*it_s)->type == WAIT)
 			break;
 	}
 }
 
-bool Step::executeStep(float dt)
+bool Cutscene::isFinished() const
 {
-	//Call the desired function with the using element
-
-	//If WAIT, just wait for the timer to reach duration and return false
-	switch (type)
-	{
-	case MOVE_TO:
-		break;
-	case MOVE:
-		Move(entity, dt);
-		break;
-	case ACTIVATE:
-		break;
-	case DEACTIVATE:
-		break;
-	}
-
-	if (timer.Read() >= duration) //return false when finished
-		return false;
-	return true; 
+	return missingSteps.size() == 0 && activeSteps.size() == 0; //if the activeSteps & missingSteps list is empty, the cutscene is finished
 }
 
-void Step::Move(Entity* entity, float dt)
+bool Step::isFinished() const
 {
-	iPoint stepMovement = { (int)((position.x / (duration / 1000))*dt), (int)((position.y / (duration / 1000))*dt) };
+	if (timer.Read() >= duration) //return true when finished
+		return true;
 
-	entity->position += stepMovement;
+	return false;
+}
+
+void Step::setMovement(int x, int y)
+{
+	movement = { (x / (float)(duration / 1000.0f)), (y / (float)(duration / 1000.0f)) };
 }
