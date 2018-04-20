@@ -46,18 +46,27 @@ bool j1EntityManager::Update(float dt)
 				if (entity != nullptr)
 				{
 					fPoint stepMovement;
+					float time_percentage = dt / (float)((*it_s)->duration / 1000.0f);
 					switch ((*it_s)->type)
 					{
-					case MOVE:
-						stepMovement = { (*it_s)->movement.x * dt, (*it_s)->movement.y * dt };
-						entity->position += stepMovement;
-						break;
 					case MOVE_TO:
+						if ((*it_s)->movement.x == 0 && (*it_s)->movement.y == 0)
+						{
+							(*it_s)->movement.x = (*it_s)->destiny.x - entity->position.x;
+							(*it_s)->movement.y = (*it_s)->destiny.y - entity->position.y;
+						}
+					case MOVE:					
+						stepMovement = { (*it_s)->movement.x * time_percentage, (*it_s)->movement.y * time_percentage };
+						/*(*it_s)->moved += stepMovement;
+						if ((*it_s)->moved.x > (*it_s)->movement.x)
+							stepMovement.x -= (*it_s)->moved.x - (*it_s)->movement.x;
+						if ((*it_s)->moved.y > (*it_s)->movement.y)
+							stepMovement.y -= (*it_s)->moved.y - (*it_s)->movement.y;*/
+						entity->position += stepMovement;
 						break;
 					case ACTIVATE:
 						break;
 					case DEACTIVATE:
-						return false;
 						break;
 					}
 				}

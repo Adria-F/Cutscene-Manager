@@ -27,8 +27,8 @@ bool j1CutsceneManager::Update(float dt)
 		}
 		else
 		{
-			/*execute activeSteps if one returns false, remove it from the activeSteps list
-			if the step that returns false is a WAIT type, loadFollowingSteps()*/
+			/*check activeSteps if one is finished, remove it from the activeSteps list
+			if the step finished is a WAIT type, loadFollowingSteps()*/
 			for (std::list<Step*>::iterator it_s = activeCutscene->activeSteps.begin(); it_s != activeCutscene->activeSteps.end(); it_s++)
 			{
 				if ((*it_s)->isFinished())//Enter if finished
@@ -147,8 +147,10 @@ Cutscene* j1CutsceneManager::loadCutscene(std::string tag)
 
 				newStep = new Step(type, element_type, id, duration);
 
-				if (type == MOVE || type == MOVE_TO)
+				if (type == MOVE)
 					newStep->setMovement(step.attribute("x").as_int(0), step.attribute("y").as_int(0));
+				else if (type == MOVE_TO)
+					newStep->setDestiny(step.attribute("x").as_int(0), step.attribute("y").as_int(0));
 
 				ret->steps.push_back(newStep);
 
@@ -193,6 +195,13 @@ bool Cutscene::isFinished() const
 	return missingSteps.size() == 0 && activeSteps.size() == 0; //if the activeSteps & missingSteps list is empty, the cutscene is finished
 }
 
+void Step::Start()
+{
+	timer.Start();
+	if (type == MOVE_TO)
+		movement = { 0,0 };
+}
+
 bool Step::isFinished() const
 {
 	if (timer.Read() >= duration) //return true when finished
@@ -203,5 +212,10 @@ bool Step::isFinished() const
 
 void Step::setMovement(int x, int y)
 {
-	movement = { (x / (float)(duration / 1000.0f)), (y / (float)(duration / 1000.0f)) };
+	movement = { x,y };
+}
+
+void Step::setDestiny(int x, int y)
+{
+	destiny = { x,y };
 }

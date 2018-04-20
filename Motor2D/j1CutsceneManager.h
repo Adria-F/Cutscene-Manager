@@ -36,34 +36,27 @@ public:
 	~Step()
 	{}
 
-	void Start() { timer.Start(); }
+	void Start();
 
 	bool isFinished() const;
 
 	void setMovement(int x, int y);
+	void setDestiny(int x, int y);
 	
-
-	//void Move(UI_element* element);
-	/*
-	void MoveTo(UI_element* element);
-	void MoveTo(Entity* entity);
-
-	void Activate(bool activate, UI_element* element);
-	void Activate(bool activate, FX/MUSIC path?);
-
-	*/
 public:
 
 	stepOf element;
 	step_type type;
 	int id = 0;
-	fPoint movement = { 0.0f,0.0f };
+	iPoint movement = { 0,0 };
+	iPoint destiny = { 0,0 };
 	
+	int duration = 0;
 
 private:
 
-	int duration = 0;
 	j1Timer timer;
+	
 };
 
 class Cutscene

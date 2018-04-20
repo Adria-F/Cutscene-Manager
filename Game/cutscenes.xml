@@ -38,9 +38,9 @@ if there is a delay step, the following steps will start at time = 0 + delay tim
 		</move>
 	</cutscene>
 	<cutscene tag="test2">
-		<move duration="1000" x="300">
+		<move_to duration="1000" x="300" y="300">
 			<entity ID="1"/>
-		</move>
+		</move_to>
 		<move duration="2000" x="300">
 			<entity ID="2"/>
 		</move>

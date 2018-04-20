@@ -42,9 +42,10 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(audio);
 	AddModule(font);
 	AddModule(scene);
+	AddModule(cutscenemanager);
 	AddModule(entitymanager);
 	AddModule(gui);
-	AddModule(cutscenemanager);
+	
 
 	// render last to swap buffer
 	AddModule(render);
