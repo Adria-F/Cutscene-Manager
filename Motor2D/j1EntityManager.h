@@ -22,6 +22,8 @@ public:
 	// Called each loop iteration
 	bool Update(float dt);
 
+	void manageCutsceneEvents(float dt);
+
 	// Called before quitting
 	bool CleanUp();
 

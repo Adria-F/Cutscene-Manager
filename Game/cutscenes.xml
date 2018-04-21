@@ -53,7 +53,11 @@ if there is a delay step, the following steps will start at time = 0 + delay tim
 		<move duration="5000" x="300">
 			<entity ID="3"/>
 		</move>
-		<wait duration="3000"/>
+		<wait duration="2000"/>
+		<activate>
+			<UI_element ID="1"/>
+		</activate>
+		<wait duration="1000"/>
 		<activate>
 			<music ID="2"/>
 		</activate>

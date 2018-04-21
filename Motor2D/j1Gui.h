@@ -24,6 +24,9 @@ public:
 	bool CleanUp();
 
 	TextBox* createTextBox(int x, int y, int w, int h);
+	UI_Element* getElement(int id);
+
+	void manageCutsceneEvents(float dt);
 
 public:
 

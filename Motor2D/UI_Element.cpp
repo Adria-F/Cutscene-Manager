@@ -2,7 +2,7 @@
 
 iPoint UI_Element::getGlobalPosition()
 {
-	iPoint ret = local_position;
+	iPoint ret = { (int)local_position.x, (int)local_position.x };
 
 	if (parent != nullptr)
 		ret += parent->getGlobalPosition();

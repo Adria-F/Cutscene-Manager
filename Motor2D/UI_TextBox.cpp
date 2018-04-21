@@ -29,24 +29,29 @@ void TextBox::BlitElement()
 
 void TextBox::addTextLine(std::string text)
 {
-	Text* line = new Text(text, BOX_MARGIN, BOX_MARGIN + getLinesHeight() + LINES_SEPARATION);
+	Text* line = new Text(text, BOX_MARGIN, BOX_MARGIN + getLinesHeight());
 	line->parent = this;
 
-	int width = line->tex_width;
-	if (width + 2*BOX_MARGIN > section.w)
-		section.w = width + 2 * BOX_MARGIN;
-
 	textLines.push_back(line);
+
+	int width = line->tex_width;
+	if (width + 2 * BOX_MARGIN > section.w)
+		section.w = width + 2 * BOX_MARGIN;
+	int height = getLinesHeight();
+	if (height + 2 * BOX_MARGIN > section.h)
+		section.h = height + 2 * BOX_MARGIN;
 }
 
 int TextBox::getLinesHeight()
 {
 	int height = 0;
 
+	int counter = 0;
 	for (std::list<Text*>::iterator it_t = textLines.begin(); it_t != textLines.end(); it_t++)
 	{
 		height += (*it_t)->tex_height;
+		counter++;
 	}
 
-	return height;
+	return height + (LINES_SEPARATION*(counter-1));
 }

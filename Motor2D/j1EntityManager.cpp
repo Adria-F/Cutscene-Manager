@@ -36,6 +36,13 @@ bool j1EntityManager::Update(float dt)
 		App->render->DrawQuad({ (int)selected_entity->position.x, (int)selected_entity->position.y, selected_entity->section.w, selected_entity->section.h }, Green, false);
 	}
 
+	manageCutsceneEvents(dt);
+
+	return true;
+}
+
+void j1EntityManager::manageCutsceneEvents(float dt)
+{
 	if (App->cutscenemanager->activeCutscene != nullptr)
 	{
 		for (std::list<Step*>::iterator it_s = App->cutscenemanager->activeCutscene->activeSteps.begin(); it_s != App->cutscenemanager->activeCutscene->activeSteps.end(); it_s++)
@@ -55,7 +62,7 @@ bool j1EntityManager::Update(float dt)
 							(*it_s)->movement.x = (*it_s)->destiny.x - entity->position.x;
 							(*it_s)->movement.y = (*it_s)->destiny.y - entity->position.y;
 						}
-					case MOVE:					
+					case MOVE:
 						stepMovement = { (*it_s)->movement.x * time_percentage, (*it_s)->movement.y * time_percentage };
 						entity->position += stepMovement;
 						break;
@@ -68,8 +75,6 @@ bool j1EntityManager::Update(float dt)
 			}
 		}
 	}
-
-	return true;
 }
 
 bool j1EntityManager::CleanUp()
