@@ -1,5 +1,6 @@
 #include "j1Gui.h"
 #include "UI_Element.h"
+#include "UI_TextBox.h"
 
 j1Gui::~j1Gui()
 {
@@ -14,7 +15,8 @@ j1Gui::~j1Gui()
 
 bool j1Gui::Start()
 {
-	createElement(0, 0, 1024, 50);
+	TextBox* test = createTextBox(400, 300, 100, 75);
+	test->addTextLine("Hello World!");
 
 	return true;
 }
@@ -35,9 +37,9 @@ bool j1Gui::CleanUp()
 	return true;
 }
 
-UI_Element* j1Gui::createElement(int x, int y, int w, int h)
+TextBox* j1Gui::createTextBox(int x, int y, int w, int h)
 {
-	UI_Element* ret = new UI_Element(x, y, w, h);
+	TextBox* ret = new TextBox(x, y, w, h);
 	elements.push_back(ret);
 
 	return ret;

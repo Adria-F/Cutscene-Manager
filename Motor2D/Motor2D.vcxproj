@@ -95,6 +95,8 @@
     <ClCompile Include="j1Window.cpp" />
     <ClCompile Include="PugiXml\src\pugixml.cpp" />
     <ClCompile Include="UI_Element.cpp" />
+    <ClCompile Include="UI_Text.cpp" />
+    <ClCompile Include="UI_TextBox.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Color.h" />
@@ -120,6 +122,8 @@
     <ClInclude Include="PugiXml\src\pugiconfig.hpp" />
     <ClInclude Include="PugiXml\src\pugixml.hpp" />
     <ClInclude Include="UI_Element.h" />
+    <ClInclude Include="UI_Text.h" />
+    <ClInclude Include="UI_TextBox.h" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="..\Game\config.xml">

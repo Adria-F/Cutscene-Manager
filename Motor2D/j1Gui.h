@@ -5,6 +5,7 @@
 #include <list>
 
 class UI_Element;
+class TextBox;
 
 class j1Gui : public j1Module
 {
@@ -22,7 +23,7 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
-	UI_Element* createElement(int x, int y, int w, int h);
+	TextBox* createTextBox(int x, int y, int w, int h);
 
 public:
 

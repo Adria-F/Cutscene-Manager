@@ -5,8 +5,6 @@
 #include "j1App.h"
 #include "j1Render.h"
 
-#define DEFAULT_UI_COLOR Gray
-
 class UI_Element
 {
 public:
@@ -16,11 +14,7 @@ public:
 	{}
 
 	virtual void BlitElement()
-	{
-		iPoint globalPosition = getGlobalPosition();
-
-		App->render->DrawQuad({ globalPosition.x, globalPosition.y, section.w, section.h }, DEFAULT_UI_COLOR);
-	}
+	{}
 
 	iPoint getGlobalPosition();
 

@@ -59,7 +59,7 @@ SDL_Texture* j1Fonts::Print(const char* text, SDL_Color* color , TTF_Font* font)
 {
 	SDL_Texture* ret = nullptr;
 	SDL_Surface* surface = TTF_RenderText_Blended((font) ? font : default_font, text, *color);
-
+	
 	if(surface)
 	{
 		ret = App->tex->LoadSurface(surface);
