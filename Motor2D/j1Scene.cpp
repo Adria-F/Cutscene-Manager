@@ -60,6 +60,37 @@ bool j1Scene::Update(float dt)
 // Called each loop iteration
 bool j1Scene::PostUpdate()
 {
+	if (App->cutscenemanager->activeCutscene != nullptr)
+	{
+		for (std::list<Step*>::iterator it_s = App->cutscenemanager->activeCutscene->activeSteps.begin(); it_s != App->cutscenemanager->activeCutscene->activeSteps.end(); it_s++)
+		{
+			switch ((*it_s)->element)
+			{
+			case MUSIC:
+				switch ((*it_s)->type)
+				{
+				case ACTIVATE:
+					App->audio->PlayMusic((*it_s)->id, 0);
+					App->cutscenemanager->activeCutscene->activeSteps.erase(it_s);
+					break;
+				case DEACTIVATE:
+					App->audio->PlayMusic(0, 1);
+					App->cutscenemanager->activeCutscene->activeSteps.erase(it_s);
+					break;
+				}
+				break;
+			case FX:
+				switch ((*it_s)->type)
+				{
+				case ACTIVATE:
+					App->audio->PlayFx((*it_s)->id);
+					App->cutscenemanager->activeCutscene->activeSteps.erase(it_s);
+					break;
+				}
+				break;
+			}
+		}
+	}
 
 	return true;
 }

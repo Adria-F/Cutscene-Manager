@@ -38,6 +38,12 @@ if there is a delay step, the following steps will start at time = 0 + delay tim
 		</move>
 	</cutscene>
 	<cutscene tag="test2">
+		<activate>
+			<fx ID="2"/>
+		</activate>
+		<activate>
+			<music ID="1"/>
+		</activate>
 		<move_to duration="1000" x="300" y="300">
 			<entity ID="1"/>
 		</move_to>
@@ -47,6 +53,10 @@ if there is a delay step, the following steps will start at time = 0 + delay tim
 		<move duration="5000" x="300">
 			<entity ID="3"/>
 		</move>
+		<wait duration="3000"/>
+		<activate>
+			<music ID="2"/>
+		</activate>
 	</cutscene>
 	<cutscene tag="test3">
 		<move duration="1000" x="-300">

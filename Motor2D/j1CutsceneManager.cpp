@@ -129,7 +129,7 @@ Cutscene* j1CutsceneManager::loadCutscene(std::string tag)
 					break;
 				}
 
-				int duration = step.attribute("duration").as_int();
+				int duration = step.attribute("duration").as_int(-1);
 
 				int id = step.first_child().attribute("ID").as_int();
 				std::string element_name = step.first_child().name();
@@ -138,10 +138,10 @@ Cutscene* j1CutsceneManager::loadCutscene(std::string tag)
 					element_type = ENTITY;
 				else if (element_name == "UI_element")
 					element_type = UI_ELEMENT;
-				else if (element_name == "FX")
-					element_type == FX;
-				else if (element_name == "MUSIC")
-					element_type == MUSIC;
+				else if (element_name == "fx")
+					element_type = FX;
+				else if (element_name == "music")
+					element_type = MUSIC;
 				else
 					LOG("Unknown element type");
 
@@ -204,7 +204,7 @@ void Step::Start()
 
 bool Step::isFinished() const
 {
-	if (timer.Read() >= duration) //return true when finished
+	if (duration != -1 && timer.Read() >= duration) //return true when finished
 		return true;
 
 	return false;

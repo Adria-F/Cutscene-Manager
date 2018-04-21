@@ -57,11 +57,6 @@ bool j1EntityManager::Update(float dt)
 						}
 					case MOVE:					
 						stepMovement = { (*it_s)->movement.x * time_percentage, (*it_s)->movement.y * time_percentage };
-						/*(*it_s)->moved += stepMovement;
-						if ((*it_s)->moved.x > (*it_s)->movement.x)
-							stepMovement.x -= (*it_s)->moved.x - (*it_s)->movement.x;
-						if ((*it_s)->moved.y > (*it_s)->movement.y)
-							stepMovement.y -= (*it_s)->moved.y - (*it_s)->movement.y;*/
 						entity->position += stepMovement;
 						break;
 					case ACTIVATE:
