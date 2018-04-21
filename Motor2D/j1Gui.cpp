@@ -17,9 +17,9 @@ j1Gui::~j1Gui()
 
 bool j1Gui::Start()
 {
-	TextBox* test = createTextBox(400, 300, 0, 0); //ID 1
-	test->addTextLine("Hello World!");
-	test->active = false;
+	TextBox* text1 = createTextBox(400, 300); //ID 1
+	text1->active = false;
+	text1->addTextLine("Hello World!");
 
 	return true;
 }
@@ -42,9 +42,9 @@ bool j1Gui::CleanUp()
 	return true;
 }
 
-TextBox* j1Gui::createTextBox(int x, int y, int w, int h)
+TextBox* j1Gui::createTextBox(int x, int y)
 {
-	TextBox* ret = new TextBox(x, y, w, h);
+	TextBox* ret = new TextBox(x, y, 0, 0);
 	elements.push_back(ret);
 
 	ret->id = elements.size();

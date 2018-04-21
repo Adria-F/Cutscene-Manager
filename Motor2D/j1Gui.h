@@ -23,7 +23,7 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
-	TextBox* createTextBox(int x, int y, int w, int h);
+	TextBox* createTextBox(int x, int y);
 	UI_Element* getElement(int id);
 
 	void manageCutsceneEvents(float dt);

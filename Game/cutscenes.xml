@@ -72,5 +72,8 @@ if there is a delay step, the following steps will start at time = 0 + delay tim
 		<move duration="5000" x="-300">
 			<entity ID="3"/>
 		</move>
+		<deactivate>
+			<UI_element ID="1"/>
+		</deactivate>
 	</cutscene>
 </cutscenes>

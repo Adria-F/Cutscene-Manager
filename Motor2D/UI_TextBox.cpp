@@ -46,12 +46,10 @@ int TextBox::getLinesHeight()
 {
 	int height = 0;
 
-	int counter = 0;
 	for (std::list<Text*>::iterator it_t = textLines.begin(); it_t != textLines.end(); it_t++)
 	{
 		height += (*it_t)->tex_height;
-		counter++;
 	}
 
-	return height + (LINES_SEPARATION*(counter-1));
+	return height;
 }

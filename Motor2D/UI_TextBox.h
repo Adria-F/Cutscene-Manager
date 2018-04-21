@@ -11,7 +11,6 @@ class Text;
 #define DEFAULT_BORDER_THICKNESS 1
 
 #define BOX_MARGIN 5
-#define LINES_SEPARATION 5
 
 class TextBox : public UI_Element
 {
