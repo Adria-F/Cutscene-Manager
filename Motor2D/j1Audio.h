@@ -30,8 +30,10 @@ public:
 	bool Save(pugi::xml_node&) const;
 	bool Load(pugi::xml_node&);
 
+	unsigned int LoadMusic(const char* path);
+
 	// Play a music file
-	bool PlayMusic(const char* path, uint fade_time = DEFAULT_MUSIC_FADE_TIME);
+	bool PlayMusic(unsigned int music, uint fade_time = DEFAULT_MUSIC_FADE_TIME);
 
 	// Load a WAV in memory
 	unsigned int LoadFx(const char* path);
@@ -48,7 +50,7 @@ private:
 
 	float					musicVolumeModifier = 1;
 	float					sfxVolumeModifier = 1;
-	_Mix_Music*				music = nullptr;
+	std::vector<_Mix_Music*> music;
 	std::vector<Mix_Chunk*>	fx;
 
 public:

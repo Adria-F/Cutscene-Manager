@@ -54,7 +54,8 @@ bool j1Audio::CleanUp()
 	{
 		LOG("Freeing sound FX, closing Mixer and Audio subsystem");
 
-		if (music) Mix_FreeMusic(music);
+		for (int i = 0; i < music.size(); i++)   Mix_FreeMusic(music[i]);
+		music.clear();
 
 		for (int i = 0; i < fx.size(); i++)   Mix_FreeChunk(fx[i]);
 		fx.clear();
@@ -83,33 +84,39 @@ bool j1Audio::Load(pugi::xml_node & config)
 	return true;
 }
 
+unsigned int j1Audio::LoadMusic(const char* path)
+{
+	if (active) {
+
+		if (_Mix_Music* chunk = Mix_LoadMUS(PATH(MUSIC_FOLDER, path)))
+		{
+			music.push_back(chunk);
+			return music.size();
+		}
+		else LOG("Cannot load ogg %s. Mix_GetError(): %s", path, Mix_GetError());
+	}
+
+	return 0;
+}
+
 // Play a music file
-bool j1Audio::PlayMusic(const char* path, uint fade_time)
+bool j1Audio::PlayMusic(unsigned int id, uint fade_time)
 {
 	bool ret = false;
 
-	if (active) {
+	if (fade_time)	Mix_FadeOutMusic(int(fade_time * 1000.0f));
+	else			Mix_HaltMusic();
 
-		if (music)
-		{
-			if (fade_time)	Mix_FadeOutMusic(int(fade_time * 1000.0f));
-			else			Mix_HaltMusic();
+	if (id > 0 && id <= music.size() && active)
+	{
+		
+		if (fade_time)	ret = (Mix_FadeInMusic(music[id-1], -1, fade_time * 1000) < 0);
+		else			ret = (Mix_PlayMusic(music[id-1], -1) < 0);
 
-			// this call blocks until fade out is done
-			Mix_FreeMusic(music);
-		}
-
-		if (music = Mix_LoadMUS(PATH(MUSIC_FOLDER, path)))
-		{
-			if (fade_time)	ret = (Mix_FadeInMusic(music, -1, fade_time * 1000) < 0);
-			else			ret = (Mix_PlayMusic(music, -1) < 0);
-		}
-
-		if (ret) LOG("Successfully playing %s", path);
-		else	 LOG("Cannot load music %s. Mix_GetError(): %s\n", path, Mix_GetError());
 	}
 
 	return ret;
+
 }
 
 // Load WAV

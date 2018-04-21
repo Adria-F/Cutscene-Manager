@@ -30,6 +30,10 @@ bool j1Scene::Start()
 	App->entitymanager->createAlly(100, 100);
 	App->entitymanager->createEnemy(100, 200);
 	App->entitymanager->createAlly(100, 300);
+	App->audio->LoadMusic("Main_Theme.ogg"); //Music id 1
+	App->audio->LoadMusic("Victory_Theme.ogg"); //Music id 2
+	App->audio->LoadFx("ready_to_serve.wav"); //Fx id 1
+	App->audio->LoadFx("under_attack.wav"); //Fx id 2
 
 	return true;
 }
