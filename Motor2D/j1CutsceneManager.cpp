@@ -20,7 +20,7 @@ bool j1CutsceneManager::Update(float dt)
 {
 	if (activeCutscene != nullptr)
 	{	
-		if (activeCutscene->isFinished())
+		if (activeCutscene->activeSteps.size() == 0) //All steps have been finished
 		{
 			activeCutscene = nullptr;
 			App->resumeGame();
@@ -34,10 +34,7 @@ bool j1CutsceneManager::Update(float dt)
 				if ((*it_s)->isFinished())//Enter if finished
 				{
 					activeCutscene->activeSteps.erase(it_s);
-					if ((*it_s)->type == WAIT)
-					{
-						activeCutscene->loadFollowingSteps();
-					}
+					activeCutscene->loadFollowingSteps((*it_s));
 				}
 			}
 		}
@@ -108,52 +105,9 @@ Cutscene* j1CutsceneManager::loadCutscene(std::string tag)
 		if (found)
 		{
 			ret = new Cutscene(tag);
-			for (pugi::xml_node step = cutscene.first_child(); step; step = step.next_sibling())
+			for (pugi::xml_node step = cutscene.child("step"); step; step = step.next_sibling("step"))
 			{
-				Step* newStep = nullptr;
-				std::string step_name = step.name();
-				step_type type;
-				if (step_name == "move_to")
-					type = MOVE_TO;
-				else if (step_name == "move")
-					type = MOVE;
-				else if (step_name == "activate")
-					type = ACTIVATE;
-				else if (step_name == "deactivate")
-					type = DEACTIVATE;
-				else if (step_name == "wait")
-					type = WAIT;
-				else
-				{
-					LOG("Unknown step type");
-					break;
-				}
-
-				int duration = step.attribute("duration").as_int(-1);
-
-				int id = step.first_child().attribute("ID").as_int();
-				std::string element_name = step.first_child().name();
-				stepOf element_type = WAIT_TYPE;
-				if (element_name == "entity")
-					element_type = ENTITY;
-				else if (element_name == "UI_element")
-					element_type = UI_ELEMENT;
-				else if (element_name == "fx")
-					element_type = FX;
-				else if (element_name == "music")
-					element_type = MUSIC;
-				else
-					LOG("Unknown element type");
-
-				newStep = new Step(type, element_type, id, duration);
-
-				if (type == MOVE)
-					newStep->setMovement(step.attribute("x").as_int(0), step.attribute("y").as_int(0));
-				else if (type == MOVE_TO)
-					newStep->setDestiny(step.attribute("x").as_int(0), step.attribute("y").as_int(0));
-
-				ret->steps.push_back(newStep);
-
+				ret->steps.push_back(loadStep(step));
 			}
 		}
 		else
@@ -168,31 +122,78 @@ Cutscene* j1CutsceneManager::loadCutscene(std::string tag)
 	return ret;
 }
 
-void Cutscene::Start()
+Step * j1CutsceneManager::loadStep(pugi::xml_node step)
 {
-	missingSteps.clear();
-	activeSteps.clear();
-	missingSteps = steps; //All the steps of the cutscene are missing
-	loadFollowingSteps(); //Load the first set of steps
+	Step* newStep = nullptr;
+	std::string step_name = step.attribute("type").as_string();
+	step_type type;
+	if (step_name == "move_to")
+		type = MOVE_TO;
+	else if (step_name == "move")
+		type = MOVE;
+	else if (step_name == "activate")
+		type = ACTIVATE;
+	else if (step_name == "deactivate")
+		type = DEACTIVATE;
+	else if (step_name == "wait")
+		type = WAIT;
+	else
+	{
+		LOG("Unknown step type");
+		return newStep;
+	}
+
+	int duration = step.attribute("duration").as_int(-1);
+
+	int id = step.first_child().attribute("ID").as_int();
+	std::string element_name = step.first_child().name();
+	stepOf element_type = WAIT_TYPE;
+	if (element_name == "entity")
+		element_type = ENTITY;
+	else if (element_name == "UI_element")
+		element_type = UI_ELEMENT;
+	else if (element_name == "fx")
+		element_type = FX;
+	else if (element_name == "music")
+		element_type = MUSIC;
+	else
+		LOG("Unknown element type");
+
+	newStep = new Step(type, element_type, id, duration);
+
+	if (type == MOVE)
+		newStep->setMovement(step.attribute("x").as_int(0), step.attribute("y").as_int(0));
+	else if (type == MOVE_TO)
+		newStep->setDestiny(step.attribute("x").as_int(0), step.attribute("y").as_int(0));
+
+	for (pugi::xml_node followingStep = step.child("step"); followingStep; followingStep = followingStep.next_sibling("step"))
+	{
+		newStep->followingSteps.push_back(loadStep(followingStep));
+	}
+
+	return newStep;
 }
 
-void Cutscene::loadFollowingSteps()
+void Cutscene::Start()
 {
-	// move steps from missingSteps to activeSteps (delte them from missingSteps)
-	//until finds the next WAIT type
-	for (std::list<Step*>::iterator it_s = missingSteps.begin(); it_s != missingSteps.end(); it_s++)
+	activeSteps.clear();
+	activeSteps = steps; //All the steps of the cutscene are active
+
+	for (std::list<Step*>::iterator it_s = activeSteps.begin(); it_s != activeSteps.end(); it_s++)
 	{
-		activeSteps.push_back((*it_s));
-		missingSteps.erase(it_s);
-		(*it_s)->Start(); //Start the timer from 0
-		if ((*it_s)->type == WAIT)
-			break;
+		(*it_s)->Start();
 	}
 }
 
-bool Cutscene::isFinished() const
+void Cutscene::loadFollowingSteps(Step* currentStep)
 {
-	return missingSteps.size() == 0 && activeSteps.size() == 0; //if the activeSteps & missingSteps list is empty, the cutscene is finished
+	// move steps from missingSteps to activeSteps (delte them from missingSteps)
+	//until finds the next WAIT type
+	for (std::list<Step*>::iterator it_s = currentStep->followingSteps.begin(); it_s != currentStep->followingSteps.end(); it_s++)
+	{
+		activeSteps.push_back((*it_s));
+		(*it_s)->Start(); //Start the timer from 0
+	}
 }
 
 void Step::Start()

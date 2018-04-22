@@ -17,6 +17,7 @@ j1Gui::~j1Gui()
 
 bool j1Gui::Start()
 {
+	//In your game probably, the UI is defined in an xml or generated procedurally, but to keep it simple, now we create all the elements from the Start of the j1Gui
 	TextBox* text1 = createTextBox(400, 300); //ID 1
 	text1->active = false;
 	text1->addTextLine("Hello World!");

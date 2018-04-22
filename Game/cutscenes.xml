@@ -15,65 +15,23 @@ if there is a delay step, the following steps will start at time = 0 + delay tim
 
 <cutscenes>
 	<cutscene tag="test">
-		<move duration="1000" x="300">
+		<step type="move" x="300">
 			<entity ID="1"/>
-		</move>
-		<wait duration="1000"/>
-		<move duration="2000" x="300">
-			<entity ID="2"/>
-		</move>
-		<wait duration="2000"/>
-		<move duration="5000" x="300">
-			<entity ID="3"/>
-		</move>
-		<wait duration="5000"/>
-		<move duration="1000" x="-300">
-			<entity ID="1"/>
-		</move>
-		<move duration="2000" x="-300">
-			<entity ID="2"/>
-		</move>
-		<move duration="5000" x="-300">
-			<entity ID="3"/>
-		</move>
-	</cutscene>
-	<cutscene tag="test2">
-		<activate>
-			<fx ID="2"/>
-		</activate>
-		<activate>
-			<music ID="1"/>
-		</activate>
-		<move_to duration="1000" x="300" y="300">
-			<entity ID="1"/>
-		</move_to>
-		<move duration="2000" x="300">
-			<entity ID="2"/>
-		</move>
-		<move duration="5000" x="300">
-			<entity ID="3"/>
-		</move>
-		<wait duration="2000"/>
-		<activate>
-			<UI_element ID="1"/>
-		</activate>
-		<wait duration="1000"/>
-		<activate>
-			<music ID="2"/>
-		</activate>
-	</cutscene>
-	<cutscene tag="test3">
-		<move duration="1000" x="-300">
-			<entity ID="1"/>
-		</move>
-		<move duration="2000" x="-300">
-			<entity ID="2"/>
-		</move>
-		<move duration="5000" x="-300">
-			<entity ID="3"/>
-		</move>
-		<deactivate>
-			<UI_element ID="1"/>
-		</deactivate>
+			<step type="move" x="300">
+				<entity ID="2"/>
+				<step type="move" x="300">
+					<entity ID="3"/>
+					<step type="move" x="-300">
+						<entity ID="1"/>
+					</step>
+					<step type="move" x="-300">
+						<entity ID="2"/>
+					</step>
+					<step type="move" x="-300">
+						<entity ID="3"/>
+					</step>
+				</step>
+			</step>
+		</step>	
 	</cutscene>
 </cutscenes>

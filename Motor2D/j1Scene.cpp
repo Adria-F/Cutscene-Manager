@@ -27,9 +27,11 @@ bool j1Scene::Awake(pugi::xml_node& config)
 bool j1Scene::Start()
 {
 	background = App->tex->Load("maps/background.png");
+	//In your game probably, the entities are defined in an xml or generated procedurally, but to keep it simple, now we create them from the Start of the scene
 	App->entitymanager->createAlly(100, 100);
 	App->entitymanager->createEnemy(100, 200);
 	App->entitymanager->createAlly(100, 300);
+	//In your game probably all the audio files are loaded from an xml, but to keep it simple, now we load them from the Start of the scene
 	App->audio->LoadMusic("Main_Theme.ogg"); //Music id 1
 	App->audio->LoadMusic("Victory_Theme.ogg"); //Music id 2
 	App->audio->LoadFx("ready_to_serve.wav"); //Fx id 1
@@ -47,10 +49,6 @@ bool j1Scene::Update(float dt)
 
 	if (App->input->GetKey(SDL_SCANCODE_C) == KEY_DOWN)
 		App->cutscenemanager->startCutscene("test");
-	if (App->input->GetKey(SDL_SCANCODE_P) == KEY_DOWN)
-		App->cutscenemanager->startCutscene("test2");
-	if (App->input->GetKey(SDL_SCANCODE_O) == KEY_DOWN)
-		App->cutscenemanager->startCutscene("test3");
 
 	App->render->Blit(background, 0, 0);
 

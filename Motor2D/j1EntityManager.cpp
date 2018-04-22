@@ -52,19 +52,27 @@ void j1EntityManager::manageCutsceneEvents(float dt)
 				Entity* entity = getEntity((*it_s)->id);
 				if (entity != nullptr)
 				{
-					fPoint stepMovement;
-					float time_percentage = dt / (float)((*it_s)->duration / 1000.0f);
+					int step_speed = DEFAULT_ENTITY_SPEED*dt;
 					switch ((*it_s)->type)
 					{
 					case MOVE_TO:
-						if ((*it_s)->movement.x == 0 && (*it_s)->movement.y == 0)
+						if ((*it_s)->movement.x == 0 && (*it_s)->movement.y == 0) //In this case, you have defined a destiny
 						{
+							//So you calculate the needed movement to reach that position
 							(*it_s)->movement.x = (*it_s)->destiny.x - entity->position.x;
 							(*it_s)->movement.y = (*it_s)->destiny.y - entity->position.y;
 						}
+						//And then do as in the normal MOVE case
 					case MOVE:
-						stepMovement = { (*it_s)->movement.x * time_percentage, (*it_s)->movement.y * time_percentage };
-						entity->position += stepMovement;
+						if ((*it_s)->duration == -1) //At the beginning the duration is set to infinite (-1)
+						{
+							iPoint absMovement = { abs((*it_s)->movement.x), abs((*it_s)->movement.y) };
+							int longest = (absMovement.x > absMovement.y) ? absMovement.x : absMovement.y;
+							float time = longest / DEFAULT_ENTITY_SPEED;
+							(*it_s)->duration = time * 1000; //So you calculate the duration that it will take to perform the desired movement
+						}
+						entity->position.x += ((*it_s)->movement.x > 0) ? step_speed : ((*it_s)->movement.x < 0)? -step_speed : 0;
+						entity->position.y += ((*it_s)->movement.y > 0) ? step_speed : ((*it_s)->movement.y < 0) ? -step_speed : 0;
 						break;
 					case ACTIVATE:
 						break;

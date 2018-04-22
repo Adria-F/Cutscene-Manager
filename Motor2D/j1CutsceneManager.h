@@ -53,6 +53,8 @@ public:
 	
 	int duration = 0;
 
+	std::list<Step*> followingSteps;
+
 private:
 
 	j1Timer timer;
@@ -70,18 +72,13 @@ public:
 
 	void Start();
 
-	void loadFollowingSteps(); //It loads the following steps until the next WAIT type
-	bool isFinished() const;
+	void loadFollowingSteps(Step* currentStep); //It loads the following steps after the current step
 
 public:
 
 	std::list<Step*> activeSteps;
 	std::string tag;
 	std::list<Step*> steps;
-
-private:
-
-	std::list<Step*> missingSteps;
 };
 
 class j1CutsceneManager : public j1Module
@@ -103,6 +100,7 @@ public:
 	void startCutscene(std::string tag);
 	Cutscene* isCutsceneLoaded(std::string tag);
 	Cutscene* loadCutscene(std::string tag);
+	Step* loadStep(pugi::xml_node step);
 
 public:
 
