@@ -94,13 +94,16 @@ void j1Gui::manageCutsceneEvents(float dt)
 						stepMovement = { (*it_s)->movement.x * time_percentage, (*it_s)->movement.y * time_percentage };
 						element->local_position += stepMovement;
 						break;
+					case ACTIVATE_AT:
+						element->local_position.x = (*it_s)->destiny.x;
+						element->local_position.y = (*it_s)->destiny.y;
 					case ACTIVATE:
 						element->active = true;
-						App->cutscenemanager->activeCutscene->activeSteps.erase(it_s);
+						App->cutscenemanager->activeCutscene->forceStepFinish((*it_s)); //This kind of event has infinite duration, so force it to finish
 						break;
 					case DEACTIVATE:
 						element->active = false;
-						App->cutscenemanager->activeCutscene->activeSteps.erase(it_s);
+						App->cutscenemanager->activeCutscene->forceStepFinish((*it_s)); //This kind of event has infinite duration, so force it to finish
 						break;
 					}
 				}

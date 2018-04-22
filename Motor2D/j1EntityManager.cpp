@@ -13,12 +13,15 @@ bool j1EntityManager::Update(float dt)
 {
 	for (std::list<Entity*>::iterator it_e = entities.begin(); it_e != entities.end(); it_e++)
 	{
-		if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN && App->input->collidingMouse({ (int)(*it_e)->position.x, (int)(*it_e)->position.y, (*it_e)->section.w, (*it_e)->section.h }))
+		if ((*it_e)->active)
 		{
-			selected_entity = (*it_e);
-			LOG("Entity ID: %d", (*it_e)->id);
+			if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN && App->input->collidingMouse({ (int)(*it_e)->position.x, (int)(*it_e)->position.y, (*it_e)->section.w, (*it_e)->section.h }))
+			{
+				selected_entity = (*it_e);
+				LOG("Entity ID: %d", (*it_e)->id);
+			}
+			(*it_e)->Draw();
 		}
-		(*it_e)->Draw();
 	}
 
 	if (selected_entity != nullptr && !App->isGamePaused())
@@ -74,9 +77,16 @@ void j1EntityManager::manageCutsceneEvents(float dt)
 						entity->position.x += ((*it_s)->movement.x > 0) ? step_speed : ((*it_s)->movement.x < 0)? -step_speed : 0;
 						entity->position.y += ((*it_s)->movement.y > 0) ? step_speed : ((*it_s)->movement.y < 0) ? -step_speed : 0;
 						break;
+					case ACTIVATE_AT:
+						entity->position.x = (*it_s)->destiny.x;
+						entity->position.y = (*it_s)->destiny.y;
 					case ACTIVATE:
+						entity->active = true;
+						App->cutscenemanager->activeCutscene->forceStepFinish((*it_s)); //This kind of event has infinite duration, so force it to finish
 						break;
 					case DEACTIVATE:
+						entity->active = false;
+						App->cutscenemanager->activeCutscene->forceStepFinish((*it_s)); //This kind of event has infinite duration, so force it to finish
 						break;
 					}
 				}

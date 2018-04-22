@@ -133,6 +133,8 @@ Step * j1CutsceneManager::loadStep(pugi::xml_node step)
 		type = MOVE;
 	else if (step_name == "activate")
 		type = ACTIVATE;
+	else if (step_name == "activate_at")
+		type = ACTIVATE_AT;
 	else if (step_name == "deactivate")
 		type = DEACTIVATE;
 	else if (step_name == "wait")
@@ -163,7 +165,7 @@ Step * j1CutsceneManager::loadStep(pugi::xml_node step)
 
 	if (type == MOVE)
 		newStep->setMovement(step.attribute("x").as_int(0), step.attribute("y").as_int(0));
-	else if (type == MOVE_TO)
+	else if (type == MOVE_TO || type == ACTIVATE_AT)
 		newStep->setDestiny(step.attribute("x").as_int(0), step.attribute("y").as_int(0));
 
 	for (pugi::xml_node followingStep = step.child("step"); followingStep; followingStep = followingStep.next_sibling("step"))
@@ -185,14 +187,19 @@ void Cutscene::Start()
 	}
 }
 
+void Cutscene::forceStepFinish(Step* step)
+{
+	activeSteps.remove(step); //Remove it from the list
+	loadFollowingSteps(step); //Load following steps
+}
+
 void Cutscene::loadFollowingSteps(Step* currentStep)
 {
-	// move steps from missingSteps to activeSteps (delte them from missingSteps)
-	//until finds the next WAIT type
+	//load the following steps after the current one
 	for (std::list<Step*>::iterator it_s = currentStep->followingSteps.begin(); it_s != currentStep->followingSteps.end(); it_s++)
 	{
 		activeSteps.push_back((*it_s));
-		(*it_s)->Start(); //Start the timer from 0
+		(*it_s)->Start(); //To restart all the needed variables
 	}
 }
 

@@ -8,28 +8,26 @@ if there is a delay step, the following steps will start at time = 0 + delay tim
   <move_to/>
   <move/>
   <activate/>
+  <activate_at/>
   <deactivate/>
   <wait/>
 
 -->
 
 <cutscenes>
-	<cutscene tag="test">
+	<cutscene tag="attack">
 		<step type="move" x="300">
 			<entity ID="1"/>
 			<step type="move" x="300">
 				<entity ID="2"/>
-				<step type="move" x="300">
-					<entity ID="3"/>
-					<step type="move" x="-300">
-						<entity ID="1"/>
-					</step>
-					<step type="move" x="-300">
+				<step type="move" x="-300">
+					<entity ID="1"/>
+					<step type="activate_at" x="500" y="500">
 						<entity ID="2"/>
 					</step>
-					<step type="move" x="-300">
-						<entity ID="3"/>
-					</step>
+				</step>
+				<step type="deactivate">
+					<entity ID="2"/>					
 				</step>
 			</step>
 		</step>	

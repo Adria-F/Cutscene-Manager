@@ -23,6 +23,7 @@ enum step_type
 	MOVE_TO,
 	MOVE,
 	ACTIVATE,
+	ACTIVATE_AT,
 	DEACTIVATE,
 	WAIT
 };
@@ -72,6 +73,7 @@ public:
 
 	void Start();
 
+	void forceStepFinish(Step* step);
 	void loadFollowingSteps(Step* currentStep); //It loads the following steps after the current step
 
 public:

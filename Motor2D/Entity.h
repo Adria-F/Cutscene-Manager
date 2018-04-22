@@ -41,6 +41,7 @@ public:
 	entity_type type = ALLY;
 	uint id = 0;
 	SDL_Rect section = { 0,0,20,30 };
+	bool active = true;
 };
 
 #endif // __ENTITY_H__
