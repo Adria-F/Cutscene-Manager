@@ -55,7 +55,7 @@ void j1EntityManager::manageCutsceneEvents(float dt)
 				Entity* entity = getEntity((*it_s)->id);
 				if (entity != nullptr)
 				{
-					int step_speed = DEFAULT_ENTITY_SPEED*dt;
+					float step_speed = DEFAULT_ENTITY_SPEED*dt;
 					switch ((*it_s)->type)
 					{
 					case MOVE_TO:
@@ -64,18 +64,25 @@ void j1EntityManager::manageCutsceneEvents(float dt)
 							//So you calculate the needed movement to reach that position
 							(*it_s)->movement.x = (*it_s)->destiny.x - entity->position.x;
 							(*it_s)->movement.y = (*it_s)->destiny.y - entity->position.y;
+							if ((*it_s)->movement.x == 0 && (*it_s)->movement.y == 0)
+							{
+								App->cutscenemanager->activeCutscene->forceStepFinish((*it_s)); //If after that movement still is 0 it means that already is in that position so you finish step
+								break;
+							}
 						}
 						//And then do as in the normal MOVE case
-					case MOVE:
+					case MOVE:				
 						if ((*it_s)->duration == -1) //At the beginning the duration is set to infinite (-1)
 						{
-							iPoint absMovement = { abs((*it_s)->movement.x), abs((*it_s)->movement.y) };
-							int longest = (absMovement.x > absMovement.y) ? absMovement.x : absMovement.y;
-							float time = longest / DEFAULT_ENTITY_SPEED;
+							float distance = sqrt(pow((*it_s)->movement.x, 2.0) + pow((*it_s)->movement.y, 2.0));
+							float time = distance / DEFAULT_ENTITY_SPEED;
 							(*it_s)->duration = time * 1000; //So you calculate the duration that it will take to perform the desired movement
-						}
-						entity->position.x += ((*it_s)->movement.x > 0) ? step_speed : ((*it_s)->movement.x < 0)? -step_speed : 0;
-						entity->position.y += ((*it_s)->movement.y > 0) ? step_speed : ((*it_s)->movement.y < 0) ? -step_speed : 0;
+							//Now calculate the director vector of the movement
+							(*it_s)->movement_vector.x = (*it_s)->movement.x / distance;
+							(*it_s)->movement_vector.y = (*it_s)->movement.y / distance;
+						}		
+						entity->position.x += (*it_s)->movement_vector.x*step_speed;
+						entity->position.y += (*it_s)->movement_vector.y*step_speed;
 						break;
 					case ACTIVATE_AT:
 						entity->position.x = (*it_s)->destiny.x;

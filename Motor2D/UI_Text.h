@@ -29,7 +29,7 @@ private:
 
 	std::string text = "";
 	SDL_Texture* texture = nullptr;
-	SDL_Color color;
+	SDL_Color color = { 0,0,0,255 };
 	_TTF_Font* font = nullptr;
 };
 

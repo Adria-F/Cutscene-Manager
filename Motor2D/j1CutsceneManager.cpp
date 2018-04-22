@@ -206,8 +206,13 @@ void Cutscene::loadFollowingSteps(Step* currentStep)
 void Step::Start()
 {
 	timer.Start();
+	
 	if (type == MOVE_TO)
+	{
 		movement = { 0,0 };
+		duration = -1;
+		movement_vector = { 0.0f,0.0f };
+	}
 }
 
 bool Step::isFinished() const

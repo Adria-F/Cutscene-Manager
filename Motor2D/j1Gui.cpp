@@ -17,10 +17,23 @@ j1Gui::~j1Gui()
 
 bool j1Gui::Start()
 {
-	//In your game probably, the UI is defined in an xml or generated procedurally, but to keep it simple, now we create all the elements from the Start of the j1Gui
-	TextBox* text1 = createTextBox(400, 300); //ID 1
-	text1->active = false;
-	text1->addTextLine("Hello World!");
+	//In your game probably, the UI is defined in an xml or generated procedurally, but to keep it simple, now we create all the elements at the Start of the j1Gui
+	TextBox* text = nullptr;
+	text = createTextBox(400, 300); //ID 1
+	text->active = false;
+	text->addTextLine("King: Come here soldier");
+	text = createTextBox(0, 0); //ID 2
+	text->active = false;
+	text->addTextLine("We will destroy you!");
+	text = createTextBox(0, 0); //ID 3
+	text->active = false;
+	text->addTextLine("You can try!");
+	text = createTextBox(0, 0); //ID 4
+	text->active = false;
+	text->addTextLine("You did it soldier");
+	text = createTextBox(0, 0); //ID 5
+	text->active = false;
+	text->addTextLine("Good job");
 
 	return true;
 }

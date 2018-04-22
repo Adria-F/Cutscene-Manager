@@ -34,6 +34,11 @@ bool j1Input::Awake(pugi::xml_node& config)
 		return false;
 	}
 
+	for (int i = 0; i < WE_COUNT; i++)
+	{
+		windowEvents[i] = false;
+	}
+
 	return true;
 }
 

@@ -104,8 +104,10 @@ bool j1Audio::PlayMusic(unsigned int id, uint fade_time)
 {
 	bool ret = false;
 
-	if (fade_time)	Mix_FadeOutMusic(int(fade_time * 1000.0f));
-	else			Mix_HaltMusic();
+	if (fade_time)
+		Mix_FadeOutMusic(int(fade_time * 1000.0f));
+	else			
+		Mix_HaltMusic();
 
 	if (id > 0 && id <= music.size() && active)
 	{

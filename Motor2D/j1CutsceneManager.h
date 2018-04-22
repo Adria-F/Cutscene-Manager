@@ -46,12 +46,13 @@ public:
 	
 public:
 
-	stepOf element;
-	step_type type;
+	stepOf element = WAIT_TYPE;
+	step_type type = WAIT;
 	int id = 0;
 	iPoint movement = { 0,0 };
 	iPoint destiny = { 0,0 };
-	
+	fPoint movement_vector = { 0.0f,0.0f };
+
 	int duration = 0;
 
 	std::list<Step*> followingSteps;
@@ -79,7 +80,7 @@ public:
 public:
 
 	std::list<Step*> activeSteps;
-	std::string tag;
+	std::string tag ="";
 	std::list<Step*> steps;
 };
 
@@ -108,7 +109,7 @@ public:
 
 	pugi::xml_document config;
 	std::list<Cutscene*> cutscenes;
-	Cutscene* activeCutscene;
+	Cutscene* activeCutscene = nullptr;
 };
 
 #endif // __J1CUTSCENEMANAGER_H__
