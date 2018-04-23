@@ -165,7 +165,7 @@ enum step_type
     - Activate at: Activate into a specific position.
     - Wait: Wait a certain amount of time before executing the following steps.
 
-In order to perform the desired action, it will have some iPoints (struct with x and y as ints) or fPoints(struct with x and y as floats):
+In order to perform the desired action, it will have some iPoints (struct with x and y as ints) or fPoints (struct with x and y as floats):
 ```c++
 iPoint movement; //Stores the specific movement to do
 iPoint destiny; //Stores the position we want the element to move to
