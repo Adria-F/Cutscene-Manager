@@ -47,13 +47,21 @@ For the same reason, when swapping from gameplay to real-time cutscenes, there i
 Talking about the resources spent for every kind of cutscene, pre-rendered use disk memory as it weights much more than the code lines but if compresed too much, it will lose a lot of quality and could look even worse than in-game graphics.
 Real-time, consumes RAM and CPU usage as it is making calculations and moving things at the moment.
 
-With all the factors seen above, we can conclude that pre-rendered cutscenes are usefull for advertising as they can look really fancy and cool, for the presentation or the end of the game as well as some scenes at the beginning of specific misions where it does not crash with the gameplay graphics and even it is used to mask loading times, as it does not consume much resources it can be executed simlutaneously while the program is loading the next map/scene and the player will not be exasperated or bored of waiting too much time.
-Finally, real-time is good for "in-game" scenes so the player feels a continuity and do not lose the focus. Even more if there is a huge degree of personalization on the environment or the characters/weapons used as it can be easily represented in the cutscene.
-
 The problem with real-time cutscenes, is that there are a lot of factors that could influentiate the behaviour of the scene, for example things or characters that should not be there as we saw in the example of GTA V above. Also, every bug that can happen during the game, can happen during the cutscene for example with colliders, where a character can be stuck and then teleport or stretch in an inhuman way.
 
 As higher is the degree of freedom of the game, the higher the chances that some nasty things occur during the cutscene.
 Is for that reason, that the cutscene manager is a really important tool and needs to be well designed and give as much control over every single element as possible.
+
+<p align="center"> 
+<img src="https://i.imgur.com/GrPBCBT.png" width="1000">
+</p>
+
+With all the factors seen above, we can conclude that pre-rendered cutscenes are usefull for advertising as they can look really fancy and cool, for the presentation or the end of the game as well as some scenes at the beginning of specific misions where it does not crash with the gameplay graphics and even it is used to mask loading times, as it does not consume much resources it can be executed simlutaneously while the program is loading the next map/scene and the player will not be exasperated or bored of waiting too much time.
+Finally, real-time is good for "in-game" scenes so the player feels a continuity and do not lose the focus. Even more if there is a huge degree of personalization on the environment or the characters/weapons used as it can be easily represented in the cutscene.
+
+<p align="center"> 
+<img src="https://i.imgur.com/nqDk1ba.png" width="500">
+</p>
 
 # Existing cutscene editors
 Now we are going to look at two existing engines and their different approach for creating cutscenes.
@@ -64,7 +72,7 @@ Since Unity version 2017.2 it includes a native cutscene editor called "Timeline
 Also, there are some paying plugins created by community developers that can do the same or even more.
 For example [Cinema Director](https://assetstore.unity.com/packages/tools/visual-scripting/cinema-director-timeline-cutscene-editor-19779) which through the same use of a timeline, allows to control game objects, camera position and switches, sound effects and transitions in an easy and intuitive way.
 ### Unreal Engine
-In Unreal engine, there is a tool called Matinee, it works pretty similar to the Unity one. There is a timeline where you can crate multiple tracks, each related to a game asset. There, you can add keyframes with a different state in each and the engine will create a smooth transition between them and a cinematic effect.
+In Unreal engine, there is a tool called Matinee, it works pretty similar to the Unity one. There is a timeline where you can create multiple tracks, each related to a game asset. There, you can add keyframes with a different state in each and the engine will create a smooth transition between them and a cinematic effect.
 
 ## The common use of a timeline
 Both of them have something in common, they use a timeline to create the cutscenes; however, they use it differently.
