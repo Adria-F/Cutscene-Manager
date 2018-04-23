@@ -175,6 +175,22 @@ Finally, it will have a list of Steps called "followingSteps", it will store the
 #### Cutscene:
 It contains a string/tag to be identified and two list of steps: steps (the total amount of steps of the cutscene) and activeSteps (the ones that are active and executing in that moment).
 
+#### Cutscene Manager:
+As I said, it will have a list of cutscenes and a pointer to the one that is active (one at a time).
+
+The cutscenes will be stored in an .xml file with a specific structure that we will discuss later. In order to execute a cutscene it will have 4 functions:
+```c++
+void startCutscene(std::string tag);
+Cutscene* isCutsceneLoaded(std::string tag);
+Cutscene* loadCutscene(std::string tag);
+Step* loadStep(pugi::xml_node step);
+```
+When we want to execute a cutscene, we call startCutscene() entering the tag of it. It will check if it is loaded using isCutsceneLoaded() and if it is not it will call loadCutscene().
+
+In this function it basically, loops looking for all the steps defined and calling loadStep() on them and pushing them to a new Cutscene.
+
+In loadStep(), it reads what we have defined in the node, and initialize a new Step with the information. If this step have some following steps defined, it will also call again loadStep() on them.
+
 ### Code yourself
 (Some tasks so they understand and internalize the manager and the code)
 #### TODO 1
