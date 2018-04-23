@@ -99,7 +99,7 @@ In order to achieve that, we will try to mimic the cutscene system of Unity, usi
 ### What we have and what we need
 We will use a really basic engine, that grants a system based on diferent modules, each one with a specific task asociated. (input manager, audio manager, render, window, scene, fonts, textures, entity manager and GUI manager).
 
-- The entity manager:
+#### The entity manager:
 
 It basically manages a list of entities. An entity is a subclass that have a position, a section, a type (ALLY or ENEMY) and an ID.
 
@@ -111,7 +111,7 @@ Entity* j1EntityManager::createAlly(int x, int y);
 Entity* j1EntityManager::createEnemy(int x, int y);
 ```
 
-- The GUI manager:
+#### The GUI manager:
 
 It is almost the same than the entity manager, but with a list of UI_Elements (really similar to an entity). The main difference here, is that in the example we will be working with a specific UI_Element which inherit from the main class: TextBox.
 
@@ -132,6 +132,49 @@ And finnaly, each step will contain the information of what action to do and whi
 
 ### Coding main functionalities
 (Start reading the xml, explain the syntax used and code at least one function to show how it is suposed to be done)
+Let's start from the smallest fragment to the big ones.
+#### Step:
+It contains a duration and a timer, so it knows when to end.
+
+To indentify the element to interact with, it has and ID and a struct:
+```c++
+enum stepOf
+{
+	WAIT_TYPE,
+	ENTITY,
+	UI_ELEMENT,
+	MUSIC,
+	FX
+};
+```
+The action to perform will be defined by another struct:
+```c++
+enum step_type
+{
+	MOVE_TO,
+	MOVE,
+	ACTIVATE,
+	ACTIVATE_AT,
+	DEACTIVATE,
+	WAIT
+};
+```
+    - Move to: Move the element to a specific position.
+    - Move: Move the element a specific amount of pixels.
+    - Activate/Deactivate: Self explanatory. In case of fx/music it will reproduce it.
+    - Activate at: Activate into a specific position.
+    - Wait: Wait a certain amount of time before executing the following steps.
+In order to perform the desired action, it will have some iPoints (struct with x and y as ints) or fPoints(struct with x and y as floats):
+```c++
+iPoint movement; //Stores the specific movement to do
+iPoint destiny; //Stores the position we want the element to move to
+fPoint movement_vector; //Stores the director vector of the movement to do calculations
+```
+Finally, it will have a list of Steps called "followingSteps", it will store the steps that have to be executed once the current one is finished.
+
+#### Cutscene:
+It contains a string/tag to be identified and two list of steps: steps (the total amount of steps of the cutscene) and activeSteps (the ones that are active and executing in that moment).
+
 ### Code yourself
 (Some tasks so they understand and internalize the manager and the code)
 #### TODO 1
