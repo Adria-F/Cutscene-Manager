@@ -93,10 +93,43 @@ Then you can access a game object, specially used with cameras and enter the ani
 
 # Let's code
 ### Which is our objective
-(How our manager will work)
-(data driven from xml)
-### What we need and what we have
-(Explain the base code)
+Our objective is to get a functional cutscene manager, which allows us to do some actions in sequence (move and activate/deactivate objects) as easy as possible and "outside the program", without coding.
+
+In order to achieve that, we will try to mimic the cutscene system of Unity, using "blocks" of actions and simulating a timeline. The cutscene will be created and readed in an .xml file.
+### What we have and what we need
+We will use a really basic engine, that grants a system based on diferent modules, each one with a specific task asociated. (input manager, audio manager, render, window, scene, fonts, textures, entity manager and GUI manager).
+
+- The entity manager:
+
+It basically manages a list of entities. An entity is a subclass that have a position, a section, a type (ALLY or ENEMY) and an ID.
+
+The entity manager is in charge of creating them, calling their function to draw, allowing you to move the selected entity with (WASD) input and to manage the cutscene events related to entities.
+
+To create an entity:
+```c++
+Entity* j1EntityManager::createAlly(int x, int y);
+Entity* j1EntityManager::createEnemy(int x, int y);
+```
+
+- The GUI manager:
+
+It is almost the same than the entity manager, but with a list of UI_Elements (really similar to an entity). The main difference here, is that in the example we will be working with a specific UI_Element which inherit from the main class: TextBox.
+
+The TextBox is an element that will be drawing a white box with some lines of text inside. It uses the element Text which basically stores and prints into screen a string.
+
+To create a TextBox and add lines of text to it:
+```c++
+TextBox* j1Gui::createTextBox(int x, int y);
+void TextBox::addTextLine(std::string text);
+```
+
+After we know what we already have and how to use it, let's see what we will have to create.
+We will need a new module called CutsceneManager, it will be based on a list of Cutscenes.
+
+A cutscene itself, will be another subclass, based on a list of steps.
+
+And finnaly, each step will contain the information of what action to do and which element of the game will be affected.
+
 ### Coding main functionalities
 (Start reading the xml, explain the syntax used and code at least one function to show how it is suposed to be done)
 ### Code yourself
