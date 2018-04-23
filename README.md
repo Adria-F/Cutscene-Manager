@@ -60,7 +60,7 @@ With all the factors seen above, we can conclude that pre-rendered cutscenes are
 Finally, real-time is good for "in-game" scenes so the player feels a continuity and do not lose the focus. Even more if there is a huge degree of personalization on the environment or the characters/weapons used as it can be easily represented in the cutscene.
 
 <p align="center"> 
-<img src="https://i.imgur.com/nqDk1ba.png" width="500">
+<img src="https://i.imgur.com/nqDk1ba.png" width="550">
 </p>
 
 # Existing cutscene editors
