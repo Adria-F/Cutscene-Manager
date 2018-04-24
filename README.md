@@ -324,7 +324,72 @@ case DEACTIVATE:
 ### Code yourself
 (Some tasks so they understand and internalize the manager and the code)
 #### TODO 1
-#### TODO N
+You have the node of the cutscene loaded into a pugi::xml_node called cutscene, now it is time to create the cutscene and load each step (use function loadStep(Step*)).
+Hint: Allocate a new cutscene and loop through all the childs of the cutscene node called "step" in order to push them into the new cutscene
+Extra: Look and try to understand what loadStep() function does.
+<details> 
+  <summary>Solution (open just to check result)</summary>
+  <p> 
+<img src="https://i.imgur.com/CUX1Fo9.jpg" width="900">
+</p>
+</details>
+
+#### TODO 2
+You have the currently active cutscene stored in a pointer (activeCutscene)
+Check each step of the activeSteps list. If one is finished (step.isFinished()), remove it from the activeSteps list and, loadFollowingSteps()
+<details> 
+  <summary>Solution (open just to check result)</summary>
+  <p> 
+<img src="https://i.imgur.com/AGSGXjv.jpg" width="900">
+</p>
+</details>
+
+#### TODO 2.5
+Use the stored variable "duration" and the timer, to check if this step is finished and return true if it is.
+Hint: If the value of duration is -1 it means that this step has infinite duration (never is finished)
+<details> 
+  <summary>Solution (open just to check result)</summary>
+  <p> 
+<img src="https://i.imgur.com/7alAmEB.jpg" width="500">
+</p>
+</details>
+
+#### TODO 3
+Fill the cases of ACTIVATE_AT, ACTIVATE and DEACTIVATE
+Hint: If you are completely lost, you can check how it is done in j1Gui. But first try to do it yourself
+<details> 
+  <summary>Solution (open just to check result)</summary>
+  <p> 
+<img src="https://i.imgur.com/NHomPEc.jpg" width="900">
+</p>
+</details>
+
+#### TODO 4
+Hint: Each tab means that this step is child of the pevious
+Create a simple cutscene following this sequence:
+```c++
+- Activate UI_element(1) at {450, 350}
+- Move entity(1) to {500, 400}
+  - Deactivate UI_element(1)
+  - Activate entity(2) at {500, -30}
+  - Move entity(2) {0, 80}
+    - Activate UI_element(2) at {450, 10}
+    - Activate music(1)
+    - Wait 1000 miliseconds
+      - Deactivate UI_element(2)
+      - Move entity(2) {0, 300}
+        - Activate fx(6)
+        - Deactivate entity(2)
+        - Wait 500 miliseconds
+          - Activate music(2)
+```
+You can execute the cutscene by pressing 'C' in the game.
+<details> 
+  <summary>Solution (open just to check result)</summary>
+  <p> 
+<img src="https://i.imgur.com/9AP3euW.jpg" width="350">
+</p>
+</details>
 
 # Bibliography
 [https://en.wikipedia.org/wiki/Cutscene](https://en.wikipedia.org/wiki/Cutscene)
