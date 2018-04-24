@@ -198,11 +198,11 @@ On the Update() of the cutscene manager, we will be checking wether a step has f
 ```c++
 for(std::list<Step*>::iterator it_s = activeSteps.begin(); it_s != acitveSteps.end(); it_s++) 
 {
-    if ((*it_s)->isFinished()) 
-    {
-        activeCutscene->activeSteps.erase(it_s);
-        activeCutscene->loadFollowingSteps((*it_s));
-    } 
+	if ((*it_s)->isFinished()) 
+	{
+		activeCutscene->activeSteps.erase(it_s);
+		activeCutscene->loadFollowingSteps((*it_s));
+	} 
 } 
 ```
 #### The xml
