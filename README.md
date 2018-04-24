@@ -96,6 +96,11 @@ Then you can access a game object, specially used with cameras and enter the ani
 Our objective is to get a functional cutscene manager, which allows us to do some actions in sequence (move and activate/deactivate objects) as easy as possible and "outside the program", without coding.
 
 In order to achieve that, we will try to mimic the cutscene system of Unity, using "blocks" of actions and simulating a timeline. The cutscene will be created and readed in an .xml file.
+
+This is an example of what we will be able to achieve through that cutscene manager
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/yK1wXuY7EJc" frameborder="0" allowfullscreen></iframe>
+
 ### What we have and what we need
 We will use a really basic engine, that grants a system based on diferent modules, each one with a specific task asociated. (input manager, audio manager, render, window, scene, fonts, textures, entity manager and GUI manager).
 
@@ -224,6 +229,12 @@ To add steps, we will use the following structure:
 </cutscene>
 ```
 In this example, step1 and step2 will start at time=0. Step3 and step4 will start after step1 has finished and step5 will start after step3 has finished.
+
+The good thing about this structure is that we can imagine a vertical line moving from left to right, that would be a timeline and the steps that are in the same point, will start simultaneously. Check this animated example:
+
+<p> 
+<img src="https://i.imgur.com/x1sHvb6.gif" width="200">
+</p>
 
 The structure of the steps will be as following:
 ```c++
