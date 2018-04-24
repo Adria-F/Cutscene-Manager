@@ -198,13 +198,14 @@ On the Update() of the cutscene manager, we will be checking wether a step has f
 ```c++
 for(std::list<Step*>::iterator it_s = activeSteps.begin(); it_s != acitveSteps.end(); it_s++) 
 {
-    if ((*it_s)->isFinished()) 
+    if ((*it_s)->isFinished()) 
     {
         activeCutscene->activeSteps.erase(it_s);
         activeCutscene->loadFollowingSteps((*it_s));
     } 
 } 
 ```
+#### The xml
 Now let's take a look at how the xml works. Each cutscene will be separated in a different file, all of them stored in a folder called Cutscenes for better organization. The tag of the cutscene will be the name of its file.
 
 To add steps, we will use the following structure:
@@ -238,8 +239,76 @@ The coordinates x and y are used to define the amount of movement (move), the po
 
 If some of that attributes are not used in a step, you do not have to include them.
 
-The node inside the step will define the element to interact with in that step and its ID (entity, UI_element, music, fx).
+The node inside the step will define the element to interact with and its ID (entity, UI_element, music, fx).
 
+#### Managing cutscene events
+To manage all the cutscene events is really simple. Let's take a look for example at the entity manager.
+
+It has a function called manageCutsceneEvents(float dt) which is called at the end of its Update().
+In that function, you just loop through all the activeSteps of the activeCutscene, and check if the element related to that step (stepOf) is the one that you are managing. In that case, you do a switch through the possible actions that this element will be affected by (music is not affected by move, so no need to check) and perform the needed operations.
+```c++
+if (App->cutscenemanager->activeCutscene != nullptr) //Make sure there is an active cutscene
+{
+	for (std::list<Step*>::iterator it_s = App->cutscenemanager->activeCutscene->activeSteps.begin(); it_s != App->cutscenemanager->activeCutscene->activeSteps.end(); it_s++)
+	{
+		if ((*it_s)->element == ENTITY) //The step is affecting an entity
+		{
+			Entity* entity = getEntity((*it_s)->id); //Get the wanted entity
+			if (entity != nullptr) //The wanted entity actually exists
+			{
+			}
+		}
+	}
+}
+```
+Let's the operations we are doing to manage the entity events:
+```c++
+float step_speed = DEFAULT_ENTITY_SPEED*dt; //Get the speed that this entity should have during that frame
+switch ((*it_s)->type)
+{
+case MOVE_TO:
+	if ((*it_s)->movement.x == 0 && (*it_s)->movement.y == 0) //In this case, you have defined a destiny
+	{
+		//So you calculate the needed movement to reach that position
+		(*it_s)->movement.x = (*it_s)->destiny.x - entity->position.x;
+		(*it_s)->movement.y = (*it_s)->destiny.y - entity->position.y;
+		if ((*it_s)->movement.x == 0 && (*it_s)->movement.y == 0)
+		{
+			//If after that movement still is 0 it means that already is in that position so you finish step
+			App->cutscenemanager->activeCutscene->forceStepFinish((*it_s));
+			break;
+		}
+	}
+	//And then do as in the normal MOVE case
+case MOVE:				
+	if ((*it_s)->duration == -1) //At the beginning the duration is set to infinite (-1)
+	{
+		float distance = sqrt(pow((*it_s)->movement.x, 2.0) + pow((*it_s)->movement.y, 2.0));
+		float time = distance / DEFAULT_ENTITY_SPEED;
+		(*it_s)->duration = time * 1000; //So you calculate the duration that it will take to perform the desired movement
+		//Now calculate the director vector of the movement
+		(*it_s)->movement_vector.x = (*it_s)->movement.x / distance;
+		(*it_s)->movement_vector.y = (*it_s)->movement.y / distance;
+	}
+	//And change the entity position according to the speed and the direction vector
+	entity->position.x += (*it_s)->movement_vector.x*step_speed;
+	entity->position.y += (*it_s)->movement_vector.y*step_speed;
+	break;
+case ACTIVATE_AT:
+	//Change the position of the entity to the desired destiny
+	entity->position.x = (*it_s)->destiny.x;
+	entity->position.y = (*it_s)->destiny.y;
+	//And activate it
+case ACTIVATE:
+	entity->active = true;
+	App->cutscenemanager->activeCutscene->forceStepFinish((*it_s)); //This kind of event has infinite duration, so force it to finish
+	break;
+case DEACTIVATE:
+	entity->active = false;
+	App->cutscenemanager->activeCutscene->forceStepFinish((*it_s)); //This kind of event has infinite duration, so force it to finish
+	break;
+}
+```
 
 ### Code yourself
 (Some tasks so they understand and internalize the manager and the code)
