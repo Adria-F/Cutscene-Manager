@@ -11,7 +11,6 @@ j1CutsceneManager::j1CutsceneManager()
 
 bool j1CutsceneManager::Start()
 {
-	App->LoadConfig(config, "cutscenes.xml");
 
 	return true;
 }
@@ -89,29 +88,19 @@ Cutscene* j1CutsceneManager::isCutsceneLoaded(std::string tag)
 Cutscene* j1CutsceneManager::loadCutscene(std::string tag)
 {
 	Cutscene* ret = nullptr;
-	//Load selected cutscene from config file
-	if (config)
+	//Load selected cutscene file
+	pugi::xml_document cutsceneDoc;
+	std::string path = CUTSCENES_FOLDER + tag + ".xml";
+	App->LoadConfig(cutsceneDoc, (char*)path.c_str());
+	
+	if (cutsceneDoc)
 	{
-		pugi::xml_node cutscene = config.child("cutscenes");
-		bool found = false;
-		for (cutscene = cutscene.child("cutscene"); cutscene; cutscene = cutscene.next_sibling("cutscene"))
+		pugi::xml_node cutscene = cutsceneDoc.child("cutscene");
+		ret = new Cutscene(tag);
+		for (pugi::xml_node step = cutscene.child("step"); step; step = step.next_sibling("step"))
 		{
-			if (cutscene.attribute("tag").as_string() == tag)
-			{
-				found = true;
-				break;
-			}
+			ret->steps.push_back(loadStep(step));
 		}
-		if (found)
-		{
-			ret = new Cutscene(tag);
-			for (pugi::xml_node step = cutscene.child("step"); step; step = step.next_sibling("step"))
-			{
-				ret->steps.push_back(loadStep(step));
-			}
-		}
-		else
-			LOG("Cutscene %s not found", tag.c_str());
 	}
 	else
 		LOG("Cannot load file");

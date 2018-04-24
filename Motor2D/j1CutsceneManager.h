@@ -7,6 +7,8 @@
 #include <list>
 #include <string>
 
+#define CUTSCENES_FOLDER "cutscenes/"
+
 class Entity;
 
 enum stepOf
@@ -107,7 +109,6 @@ public:
 
 public:
 
-	pugi::xml_document config;
 	std::list<Cutscene*> cutscenes;
 	Cutscene* activeCutscene = nullptr;
 };
