@@ -328,7 +328,7 @@ You have the node of the cutscene loaded into a pugi::xml_node called cutscene, 
 Hint: Allocate a new cutscene and loop through all the childs of the cutscene node called "step" in order to push them into the new cutscene
 Extra: Look and try to understand what loadStep() function does.
 <details> 
-  <summary>Solution (open just to check result)</summary>
+  <summary>Solution (click to open)(open just to check your result)</summary>
   <p> 
 <img src="https://i.imgur.com/CUX1Fo9.jpg" width="900">
 </p>
@@ -338,7 +338,7 @@ Extra: Look and try to understand what loadStep() function does.
 You have the currently active cutscene stored in a pointer (activeCutscene)
 Check each step of the activeSteps list. If one is finished (step.isFinished()), remove it from the activeSteps list and, loadFollowingSteps()
 <details> 
-  <summary>Solution (open just to check result)</summary>
+  <summary>Solution (click to open)(open just to check your result)</summary>
   <p> 
 <img src="https://i.imgur.com/AGSGXjv.jpg" width="900">
 </p>
@@ -348,7 +348,7 @@ Check each step of the activeSteps list. If one is finished (step.isFinished()),
 Use the stored variable "duration" and the timer, to check if this step is finished and return true if it is.
 Hint: If the value of duration is -1 it means that this step has infinite duration (never is finished)
 <details> 
-  <summary>Solution (open just to check result)</summary>
+  <summary>Solution (click to open)(open just to check your result)</summary>
   <p> 
 <img src="https://i.imgur.com/7alAmEB.jpg" width="500">
 </p>
@@ -358,7 +358,7 @@ Hint: If the value of duration is -1 it means that this step has infinite durati
 Fill the cases of ACTIVATE_AT, ACTIVATE and DEACTIVATE
 Hint: If you are completely lost, you can check how it is done in j1Gui. But first try to do it yourself
 <details> 
-  <summary>Solution (open just to check result)</summary>
+  <summary>Solution (click to open)(open just to check your result)</summary>
   <p> 
 <img src="https://i.imgur.com/NHomPEc.jpg" width="900">
 </p>
@@ -385,7 +385,7 @@ Create a simple cutscene following this sequence:
 ```
 You can execute the cutscene by pressing 'C' in the game.
 <details> 
-  <summary>Solution (open just to check result)</summary>
+  <summary>Solution (click to open)(open just to check your result)</summary>
   <p> 
 <img src="https://i.imgur.com/9AP3euW.jpg" width="350">
 </p>
