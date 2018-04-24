@@ -322,7 +322,7 @@ case DEACTIVATE:
 ```
 
 ### Code yourself
-You can download a zip file with the exercices, the solution and a release with an example [here](https://github.com/Adria-F/Cutscene-Manager/releases/download/1.0/Cutscene.Manager.Exercices.zip)
+In order to follow the next exercices, you can download a zip file with: the code with the exercices, the solution and a release with an example [here](https://github.com/Adria-F/Cutscene-Manager/releases/download/1.0/Cutscene.Manager.Exercices.zip)
 #### TODO 1
 You have the node of the cutscene loaded into a pugi::xml_node called cutscene, now it is time to create the cutscene and load each step (use function loadStep(Step*)).
 
