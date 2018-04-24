@@ -99,7 +99,7 @@ In order to achieve that, we will try to mimic the cutscene system of Unity, usi
 
 This is an example of what we will be able to achieve through that cutscene manager
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/yK1wXuY7EJc" frameborder="0" allowfullscreen></iframe>
+<iframe align="center" width="560" height="315" src="https://www.youtube.com/embed/yK1wXuY7EJc" frameborder="0" allowfullscreen></iframe>
 
 ### What we have and what we need
 We will use a really basic engine, that grants a system based on diferent modules, each one with a specific task asociated. (input manager, audio manager, render, window, scene, fonts, textures, entity manager and GUI manager).
