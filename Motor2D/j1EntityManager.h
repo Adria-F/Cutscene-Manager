@@ -13,8 +13,7 @@ class j1EntityManager : public j1Module
 public:
 	j1EntityManager()
 	{}
-	~j1EntityManager()
-	{}
+	~j1EntityManager();
 
 	// Called before the first frame
 	bool Start();

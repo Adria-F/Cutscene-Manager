@@ -6,7 +6,8 @@
 
 j1Gui::~j1Gui()
 {
-	std::list<UI_Element*>::iterator it_e = elements.begin();
+	std::list<UI_Element*>::iterator it_e;
+	it_e = elements.begin();
 	while (it_e != elements.end())
 	{
 		RELEASE((*it_e));

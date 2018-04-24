@@ -36,8 +36,7 @@ public:
 
 	Step(step_type type, stepOf element, int id, int duration): type(type), element(element), id(id), duration(duration)
 	{}
-	~Step()
-	{}
+	~Step();
 
 	void Start();
 
@@ -71,8 +70,7 @@ public:
 
 	Cutscene(std::string tag): tag(tag)
 	{}
-	~Cutscene()//clean all lists of steps
-	{}
+	~Cutscene();
 
 	void Start();
 
@@ -92,9 +90,6 @@ public:
 	j1CutsceneManager();
 	~j1CutsceneManager()
 	{}
-
-	// Called before the first frame
-	bool Start();
 
 	// Called each loop iteration
 	bool Update(float dt);

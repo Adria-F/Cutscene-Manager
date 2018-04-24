@@ -9,12 +9,6 @@ j1CutsceneManager::j1CutsceneManager()
 	name = "cutscenemanager";
 }
 
-bool j1CutsceneManager::Start()
-{
-
-	return true;
-}
-
 bool j1CutsceneManager::Update(float dt)
 {
 	if (activeCutscene != nullptr)
@@ -26,11 +20,10 @@ bool j1CutsceneManager::Update(float dt)
 		}
 		else
 		{
-			/*check activeSteps if one is finished, remove it from the activeSteps list
-			if the step finished is a WAIT type, loadFollowingSteps()*/
+			//Check activeSteps if one is finished, remove it from the activeSteps list and, loadFollowingSteps()
 			for (std::list<Step*>::iterator it_s = activeCutscene->activeSteps.begin(); it_s != activeCutscene->activeSteps.end(); it_s++)
 			{
-				if ((*it_s)->isFinished())//Enter if finished
+				if ((*it_s)->isFinished()) //Enter if finished
 				{
 					activeCutscene->activeSteps.erase(it_s);
 					activeCutscene->loadFollowingSteps((*it_s));
@@ -44,7 +37,8 @@ bool j1CutsceneManager::Update(float dt)
 
 bool j1CutsceneManager::CleanUp()
 {
-	std::list<Cutscene*>::iterator it_c = cutscenes.begin();
+	std::list<Cutscene*>::iterator it_c;
+	it_c = cutscenes.begin();
 	while (it_c != cutscenes.end())
 	{
 		RELEASE((*it_c));
@@ -66,7 +60,7 @@ void j1CutsceneManager::startCutscene(std::string tag)
 	{
 		cutscene->Start(); //Start the selected cutscene
 		activeCutscene = cutscene; //Set it as the current active cutscene
-		App->pauseGame(); //MISSING if this cutscene pause the game
+		App->pauseGame(); //Pause the game to stop all interaction
 	}
 }
 
@@ -105,13 +99,11 @@ Cutscene* j1CutsceneManager::loadCutscene(std::string tag)
 	else
 		LOG("Cannot load file");
 
-	//TODO load and push steps into the cutscene
-	//add cutscene into list
 	cutscenes.push_back(ret);
 	return ret;
 }
 
-Step * j1CutsceneManager::loadStep(pugi::xml_node step)
+Step* j1CutsceneManager::loadStep(pugi::xml_node step)
 {
 	Step* newStep = nullptr;
 	std::string step_name = step.attribute("type").as_string();
@@ -165,6 +157,18 @@ Step * j1CutsceneManager::loadStep(pugi::xml_node step)
 	return newStep;
 }
 
+Cutscene::~Cutscene()
+{
+	std::list<Step*>::iterator it_s;
+	it_s = steps.begin();
+	while (it_s != steps.end())
+	{
+		RELEASE((*it_s));
+		it_s++;
+	}
+	steps.clear();
+}
+
 void Cutscene::Start()
 {
 	activeSteps.clear();
@@ -190,6 +194,18 @@ void Cutscene::loadFollowingSteps(Step* currentStep)
 		activeSteps.push_back((*it_s));
 		(*it_s)->Start(); //To restart all the needed variables
 	}
+}
+
+Step::~Step()
+{
+	std::list<Step*>::iterator it_s;
+	it_s = followingSteps.begin();
+	while (it_s != followingSteps.end())
+	{
+		RELEASE((*it_s));
+		it_s++;
+	}
+	followingSteps.clear();
 }
 
 void Step::Start()

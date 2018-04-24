@@ -4,6 +4,18 @@
 #include "j1Input.h"
 #include "j1CutsceneManager.h"
 
+j1EntityManager::~j1EntityManager()
+{
+	std::list<Entity*>::iterator it_e;
+	it_e = entities.begin();
+	while (it_e != entities.end())
+	{
+		RELEASE((*it_e));
+		it_e++;
+	}
+	entities.clear();
+}
+
 bool j1EntityManager::Start()
 {
 	return true;

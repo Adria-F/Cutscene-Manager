@@ -53,7 +53,7 @@ bool j1Scene::Update(float dt)
 
 	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN) return false;
 
-	if (App->input->GetKey(SDL_SCANCODE_C) == KEY_DOWN)
+	if (App->input->GetKey(SDL_SCANCODE_C) == KEY_DOWN && !App->isGamePaused())
 		App->cutscenemanager->startCutscene("attack");
 
 	App->render->Blit(background, 0, 0);
