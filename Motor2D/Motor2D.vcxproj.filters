@@ -167,13 +167,16 @@
     <Filter Include="Desenvolupament  ========\UI_elements">
       <UniqueIdentifier>{83496dbf-2d02-443e-998b-5863bb549010}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Desenvolupament  ========\Files\Cutscenes">
+      <UniqueIdentifier>{313c73b4-91c8-4d01-84e6-bff9adf41428}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="..\Game\config.xml">
       <Filter>Desenvolupament  ========\Files</Filter>
     </Xml>
-    <Xml Include="..\Game\cutscenes.xml">
-      <Filter>Desenvolupament  ========\Files</Filter>
+    <Xml Include="..\Game\cutscenes\attack.xml">
+      <Filter>Desenvolupament  ========\Files\Cutscenes</Filter>
     </Xml>
   </ItemGroup>
 </Project>

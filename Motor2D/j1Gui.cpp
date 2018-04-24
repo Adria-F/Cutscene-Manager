@@ -94,19 +94,34 @@ void j1Gui::manageCutsceneEvents(float dt)
 				UI_Element* element = getElement((*it_s)->id);
 				if (element != nullptr)
 				{
-					fPoint stepMovement;
-					float time_percentage = dt / (float)((*it_s)->duration / 1000.0f);
+					float step_speed = DEFAULT_UI_SPEED*dt;
 					switch ((*it_s)->type)
 					{
 					case MOVE_TO:
-						if ((*it_s)->movement.x == 0 && (*it_s)->movement.y == 0)
+						if ((*it_s)->movement.x == 0 && (*it_s)->movement.y == 0) //In this case, you have defined a destiny
 						{
+							//So you calculate the needed movement to reach that position
 							(*it_s)->movement.x = (*it_s)->destiny.x - element->local_position.x;
 							(*it_s)->movement.y = (*it_s)->destiny.y - element->local_position.y;
+							if ((*it_s)->movement.x == 0 && (*it_s)->movement.y == 0)
+							{
+								App->cutscenemanager->activeCutscene->forceStepFinish((*it_s)); //If after that movement still is 0 it means that already is in that position so you finish step
+								break;
+							}
 						}
+						//And then do as in the normal MOVE case
 					case MOVE:
-						stepMovement = { (*it_s)->movement.x * time_percentage, (*it_s)->movement.y * time_percentage };
-						element->local_position += stepMovement;
+						if ((*it_s)->duration == -1) //At the beginning the duration is set to infinite (-1)
+						{
+							float distance = sqrt(pow((*it_s)->movement.x, 2.0) + pow((*it_s)->movement.y, 2.0));
+							float time = distance / DEFAULT_UI_SPEED;
+							(*it_s)->duration = time * 1000; //So you calculate the duration that it will take to perform the desired movement
+															 //Now calculate the director vector of the movement
+							(*it_s)->movement_vector.x = (*it_s)->movement.x / distance;
+							(*it_s)->movement_vector.y = (*it_s)->movement.y / distance;
+						}
+						element->local_position.x += (*it_s)->movement_vector.x*step_speed;
+						element->local_position.y += (*it_s)->movement_vector.y*step_speed;
 						break;
 					case ACTIVATE_AT:
 						element->local_position.x = (*it_s)->destiny.x;

@@ -4,6 +4,8 @@
 #include "j1Module.h"
 #include <list>
 
+#define DEFAULT_UI_SPEED 150
+
 class UI_Element;
 class TextBox;
 
