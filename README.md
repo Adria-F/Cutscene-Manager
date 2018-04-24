@@ -113,7 +113,7 @@ Entity* j1EntityManager::createEnemy(int x, int y);
 
 #### The GUI manager:
 
-It is almost the same than the entity manager, but with a list of UI_Elements (really similar to an entity). The main difference here, is that in the example we will be working with a specific UI_Element which inherit from the main class: TextBox.
+It is almost the same than the entity manager, but with a list of UI_Elements (really similar to an entity). The main difference here is that in the example, we will be working with a specific UI_Element which inherit from the main class: TextBox.
 
 The TextBox is an element that will be drawing a white box with some lines of text inside. It uses the element Text which basically stores and prints into screen a string.
 
@@ -136,7 +136,7 @@ Let's start from the smallest fragment to the big ones.
 #### Step:
 It contains a duration and a timer, so it knows when to end.
 
-To indentify the element to interact with, it has and ID and a struct:
+To indentify the element to interact with, it has and ID (int) and a struct:
 ```c++
 enum stepOf
 {
@@ -174,7 +174,7 @@ fPoint movement_vector; //Stores the director vector of the movement to do calcu
 Finally, it will have a list of Steps called "followingSteps", it will store the steps that have to be executed once the current one is finished.
 
 #### Cutscene:
-It contains a string/tag to be identified and two list of steps: steps (the total amount of steps of the cutscene) and activeSteps (the ones that are active and executing in that moment).
+It contains a string/tag to be identified and two list of steps: steps (all of the steps of the cutscene that start at time=0) and activeSteps (the ones that are active and executing in that moment).
 
 #### Cutscene Manager:
 As I said, it will have a list of cutscenes and a pointer to the one that is active (one at a time).
@@ -191,6 +191,19 @@ When we want to execute a cutscene, we call startCutscene() entering the tag of 
 In this function it basically, loops looking for all the steps defined and calling loadStep() on them and pushing them to a new Cutscene.
 
 In loadStep(), it reads what we have defined in the node, and initialize a new Step with the information. If this step have some following steps defined, it will also call again loadStep() on them.
+
+The activeSteps list, will work as an event list from where the other modules read in order to get the needed information. 
+On the Update() of the cutscene manager, we will be checking wether a step has finished or not and if it does, we will remove it from the list and load the corresponding following steps. 
+```c++
+for(std::list<Step*>::iterator it_s = activeSteps.begin(); it_s != acitveSteps.end(); it_s++) 
+{
+    if ((*it_s)->isFinished()) 
+    {
+        activeCutscene->loadFollowingSteps((*it_s));
+        activeCutscene->activeSteps.erase(it_s);
+    } 
+} 
+```
 
 ### Code yourself
 (Some tasks so they understand and internalize the manager and the code)
