@@ -261,7 +261,7 @@ if (App->cutscenemanager->activeCutscene != nullptr) //Make sure there is an act
 	}
 }
 ```
-Let's the operations we are doing to manage the entity events:
+Let's see the operations we are doing to manage the entity events:
 ```c++
 float step_speed = DEFAULT_ENTITY_SPEED*dt; //Get the speed that this entity should have during that frame
 switch ((*it_s)->type)
