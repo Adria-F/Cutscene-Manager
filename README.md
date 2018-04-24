@@ -394,6 +394,12 @@ You can execute the cutscene by pressing 'C' in the game.
 # Bibliography
 [https://en.wikipedia.org/wiki/Cutscene](https://en.wikipedia.org/wiki/Cutscene)
 
+[https://www.gamespot.com/forums/playstation-nation-1000002/prerendered-vs-real-time-cutscenes-27069600/](https://www.gamespot.com/forums/playstation-nation-1000002/prerendered-vs-real-time-cutscenes-27069600/)
+
+[https://www.reddit.com/r/truegaming/comments/1zksx4/prerendered_vs_inengine_cutscenes/](https://www.reddit.com/r/truegaming/comments/1zksx4/prerendered_vs_inengine_cutscenes/)
+
+[http://gta.wikia.com/wiki/Cutscenes](http://gta.wikia.com/wiki/Cutscenes)
+
 [https://wiki.unrealengine.com/Matinee_Basics:Creating_Your_First_Matinee_Sequence](https://wiki.unrealengine.com/Matinee_Basics:_Creating_Your_First_Matinee_Sequence)
 
 [https://unity3d.com/es/learn/tutorials/topics/animation/using-timeline-overview?playlist=17099](https://unity3d.com/es/learn/tutorials/topics/animation/using-timeline-overview?playlist=17099)
