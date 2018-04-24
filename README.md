@@ -192,18 +192,54 @@ In this function it basically, loops looking for all the steps defined and calli
 
 In loadStep(), it reads what we have defined in the node, and initialize a new Step with the information. If this step have some following steps defined, it will also call again loadStep() on them.
 
-The activeSteps list, will work as an event list from where the other modules read in order to get the needed information. 
+The activeSteps list, will work as an event list from where the other modules read in order to get the needed information.
+
 On the Update() of the cutscene manager, we will be checking wether a step has finished or not and if it does, we will remove it from the list and load the corresponding following steps. 
 ```c++
 for(std::list<Step*>::iterator it_s = activeSteps.begin(); it_s != acitveSteps.end(); it_s++) 
 {
     if ((*it_s)->isFinished()) 
     {
+        activeCutscene->activeSteps.erase(it_s);
         activeCutscene->loadFollowingSteps((*it_s));
-        activeCutscene->activeSteps.erase(it_s);
     } 
 } 
 ```
+Now let's take a look at how the xml works. Each cutscene will be separated in a different file, all of them stored in a folder called Cutscenes for better organization. The tag of the cutscene will be the name of its file.
+
+To add steps, we will use the following structure:
+```c++
+<cutscene>
+    <step1>
+        <step3>
+	    <step5>
+	    </step5>
+	</step3>
+	<step4>
+	</step4>
+    </step1>
+    <step2>
+    </step2>
+</cutscene>
+```
+In this example, step1 and step2 will start at time=0. Step3 and step4 will start after step1 has finished and step5 will start after step3 has finished.
+
+The structure of the steps will be as following:
+```c++
+<step type="" duration="" x="" y="">
+    <entity ID=""/>
+</step>
+```
+The type, will define the action to do (move_to, move, activate, activate_at, deactivate, wait).
+
+The duration is for how many miliseconds does the step last. For most of the actions it won't be used as they are instantaneous or the duration is defined by the amount of movement. It is used mainly by the "wait" action.
+
+The coordinates x and y are used to define the amount of movement (move), the position to reach (move_to) or the position to be activated (activate_at).
+
+If some of that attributes are not used in a step, you do not have to include them.
+
+The node inside the step will define the element to interact with in that step and its ID (entity, UI_element, music, fx).
+
 
 ### Code yourself
 (Some tasks so they understand and internalize the manager and the code)
