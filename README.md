@@ -325,7 +325,9 @@ case DEACTIVATE:
 You can download a zip file with the exercices, the solution and a release with an example [here](https://github.com/Adria-F/Cutscene-Manager/releases/download/1.0/Cutscene.Manager.Exercices.zip)
 #### TODO 1
 You have the node of the cutscene loaded into a pugi::xml_node called cutscene, now it is time to create the cutscene and load each step (use function loadStep(Step*)).
+
 Hint: Allocate a new cutscene and loop through all the childs of the cutscene node called "step" in order to push them into the new cutscene
+
 Extra: Look and try to understand what loadStep() function does.
 <details> 
   <summary>Solution (click to open)(open just to check your result)</summary>
@@ -336,6 +338,7 @@ Extra: Look and try to understand what loadStep() function does.
 
 #### TODO 2
 You have the currently active cutscene stored in a pointer (activeCutscene)
+
 Check each step of the activeSteps list. If one is finished (step.isFinished()), remove it from the activeSteps list and, loadFollowingSteps()
 <details> 
   <summary>Solution (click to open)(open just to check your result)</summary>
@@ -346,6 +349,7 @@ Check each step of the activeSteps list. If one is finished (step.isFinished()),
 
 #### TODO 2.5
 Use the stored variable "duration" and the timer, to check if this step is finished and return true if it is.
+
 Hint: If the value of duration is -1 it means that this step has infinite duration (never is finished)
 <details> 
   <summary>Solution (click to open)(open just to check your result)</summary>
@@ -356,6 +360,7 @@ Hint: If the value of duration is -1 it means that this step has infinite durati
 
 #### TODO 3
 Fill the cases of ACTIVATE_AT, ACTIVATE and DEACTIVATE
+
 Hint: If you are completely lost, you can check how it is done in j1Gui. But first try to do it yourself
 <details> 
   <summary>Solution (click to open)(open just to check your result)</summary>
@@ -366,6 +371,7 @@ Hint: If you are completely lost, you can check how it is done in j1Gui. But fir
 
 #### TODO 4
 Hint: Each tab means that this step is child of the pevious
+
 Create a simple cutscene following this sequence:
 ```c++
 - Activate UI_element(1) at {450, 350}
