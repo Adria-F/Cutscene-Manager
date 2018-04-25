@@ -136,7 +136,6 @@ A cutscene itself, will be another subclass, based on a list of steps.
 And finnaly, each step will contain the information of what action to do and which element of the game will be affected.
 
 ### Coding main functionalities
-(Start reading the xml, explain the syntax used and code at least one function to show how it is suposed to be done)
 Let's start from the smallest fragment to the big ones.
 #### Step:
 It contains a duration and a timer, so it knows when to end.
@@ -396,6 +395,15 @@ You can execute the cutscene by pressing 'C' in the game.
 <img src="https://i.imgur.com/9AP3euW.jpg" width="350">
 </p>
 </details>
+
+## How could this be improved
+This can be improved in many different ways, but the most important or interesting things that could be added are:
+
+- Create the TextBoxes from the xml.
+- Load the fx and music from the xml.
+- Allow camera movement.
+- Allow scene swapping.
+- Allow reproduction of specific animations on entities.
 
 # Bibliography
 [https://en.wikipedia.org/wiki/Cutscene](https://en.wikipedia.org/wiki/Cutscene)
