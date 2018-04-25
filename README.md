@@ -4,6 +4,7 @@ This content is generated for the second year’s subject Project 2, under super
 [Ricard Pillosu](https://es.linkedin.com/in/ricardpillosu).”
 
 # Cutscenes
+According to wikipedia:
 <p align="center">
 “A cutscene is a sequence in a video game that is not interactive, breaking up the gameplay.”
 </p>
@@ -17,19 +18,21 @@ The ones rendered in **real time** that use the game graphic enginge to create s
 <img src="https://i.ytimg.com/vi/FfQ2GCgCFQ8/maxresdefault.jpg" width="400">
 </p>
 
+(examples of GTA V and Tomb Raider)
+
 Although, there are some more types like:
 
-  - **Live-action cutscenes**, which are recorded like a film.
+  - **Live-action cutscenes**, which are recorded like a film. (Need for speed)
 <p> 
 <img src="https://i.ytimg.com/vi/dnC87rzStIo/maxresdefault.jpg" width="400">
 </p>
 
-  - **Mixed media cutscenes**, which, as the name says mixes real time and pre-rendered graphics.
+  - **Mixed media cutscenes**, which, as the name says mixes real time and pre-rendered graphics. (Wing commander III)
 <p> 
 <img src="https://j.gifs.com/wm8W6m.gif" width="400">
 </p>
 
-  - **Interactive cutscenes** also known as quick time events.
+  - **Interactive cutscenes** also known as quick time events. (Tomb Raider)
 <p> 
 <img src="https://i.kinja-img.com/gawker-media/image/upload/s--UjIyKaTi--/c_fill,f_auto,fl_progressive,g_center,h_675,q_80,w_1200/18grs10k0sa5pjpg.jpg" width="400">
 </p>
